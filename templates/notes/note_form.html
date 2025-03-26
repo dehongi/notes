@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  {% if form.instance.pk %}
+    Edit Note
+  {% else %}
+    Create Note
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <div class="card shadow">
+        <div class="card-header bg-primary bg-opacity-10">
+          <h1 class="h3 mb-0">
+            {% if form.instance.pk %}
+              <i class="bi bi-pencil me-2"></i>Edit Note
+            {% else %}
+              <i class="bi bi-plus-circle me-2"></i>Create New Note
+            {% endif %}
+          </h1>
+        </div>
+        <div class="card-body">
+          <form method="post" novalidate>
+            {% csrf_token %}
+
+            <div class="mb-3">
+              <label for="{{ form.title.id_for_label }}" class="form-label">Title</label>
+              {{ form.title }}
+              {% if form.title.errors %}
+                <div class="text-danger mt-1">
+                  {% for error in form.title.errors %}
+                    <small>{{ error }}</small>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </div>
+
+            <div class="mb-4">
+              <label for="{{ form.content.id_for_label }}" class="form-label">Content</label>
+              {{ form.content }}
+              {% if form.content.errors %}
+                <div class="text-danger mt-1">
+                  {% for error in form.content.errors %}
+                    <small>{{ error }}</small>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </div>
+
+            <div class="mb-4 form-check">
+              {{ form.is_public }}
+              <label for="{{ form.is_public.id_for_label }}" class="form-check-label">Make this note public</label>
+              <div class="form-text">Public notes can be viewed by anyone with the link.</div>
+              {% if form.is_public.errors %}
+                <div class="text-danger mt-1">
+                  {% for error in form.is_public.errors %}
+                    <small>{{ error }}</small>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </div>
+
+            <div class="d-flex justify-content-between">
+              <a href="{% url 'notes:note_list' %}" class="btn btn-outline-secondary"><i class="bi bi-x-circle me-1"></i>Cancel</a>
+              <button type="submit" class="btn btn-primary">
+                <i class="bi bi-save me-1"></i>
+                {% if form.instance.pk %}
+                  Save Changes
+                {% else %}
+                  Create Note
+                {% endif %}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

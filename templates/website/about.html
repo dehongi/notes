@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  About Us
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <div class="card shadow">
+        <div class="card-body p-4 p-lg-5">
+          <h1 class="display-5 mb-4">About Notes App</h1>
+
+          <p class="lead mb-4">Our mission is to help you organize your thoughts, ideas, and information in the most efficient way possible.</p>
+
+          <h2 class="h4 mt-5 mb-3">Our Story</h2>
+          <p>Notes App was founded in 2023 with a simple goal: to create a clean, intuitive note-taking application that helps people organize their thoughts without getting in the way. We believe that the best tools are those that feel invisible, letting you focus on what matters most—your ideas.</p>
+          <p>Whether you're a student, professional, or just someone who likes to keep track of ideas, our platform provides a seamless experience for capturing and organizing your thoughts across all your devices.</p>
+
+          <h2 class="h4 mt-5 mb-3">Key Features</h2>
+          <div class="row">
+            <div class="col-md-6 mb-4">
+              <div class="d-flex">
+                <div class="flex-shrink-0">
+                  <i class="bi bi-shield-lock text-primary fs-3 me-3"></i>
+                </div>
+                <div>
+                  <h3 class="h5">Privacy Control</h3>
+                  <p>Keep your notes private or make them public to share with others.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-4">
+              <div class="d-flex">
+                <div class="flex-shrink-0">
+                  <i class="bi bi-cloud text-primary fs-3 me-3"></i>
+                </div>
+                <div>
+                  <h3 class="h5">Cloud Sync</h3>
+                  <p>Access your notes from any device with internet connection.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-4">
+              <div class="d-flex">
+                <div class="flex-shrink-0">
+                  <i class="bi bi-lightning-charge text-primary fs-3 me-3"></i>
+                </div>
+                <div>
+                  <h3 class="h5">Fast Performance</h3>
+                  <p>Quick load times and smooth interactions for the best experience.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-4">
+              <div class="d-flex">
+                <div class="flex-shrink-0">
+                  <i class="bi bi-laptop text-primary fs-3 me-3"></i>
+                </div>
+                <div>
+                  <h3 class="h5">Responsive Design</h3>
+                  <p>Works perfectly on all devices from smartphones to desktops.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h2 class="h4 mt-5 mb-3">Our Team</h2>
+          <p>Notes App was created by a small team of passionate developers and designers who believe in the power of simple, effective tools. We're constantly working to improve the app based on user feedback and emerging technologies.</p>
+
+          <div class="mt-5 text-center">
+            <a href="{% url 'website:contact' %}" class="btn btn-primary btn-lg"><i class="bi bi-envelope me-2"></i>Get in Touch</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

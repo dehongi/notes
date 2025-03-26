@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Frequently Asked Questions
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <div class="card shadow">
+        <div class="card-body p-4 p-lg-5">
+          <h1 class="display-5 mb-4">Frequently Asked Questions</h1>
+
+          <p class="lead mb-5">Find answers to the most common questions about using Notes App.</p>
+
+          <div class="accordion" id="faqAccordion">
+            <!-- Question 1 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">What is Notes App?</button></h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  <p>Notes App is a simple, elegant note-taking application that allows you to capture and organize your thoughts, ideas, and information. With Notes App, you can create, edit, and manage notes from any device with internet access.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingTwo"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Is Notes App free to use?</button></h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  <p>Yes, Notes App is completely free to use with all core features included. We may introduce premium features in the future, but the basic functionality will always remain free.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingThree"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">How do I create a new note?</button></h2>
+              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  <p>To create a new note, simply:</p>
+                  <ol>
+                    <li>Log in to your Notes App account</li>
+                    <li>Click the "New Note" button in the navigation bar</li>
+                    <li>Enter a title and content for your note</li>
+                    <li>Click "Create Note" to save</li>
+                  </ol>
+                  <p>Your note will be instantly saved to your account and accessible from any device.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingFour"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">What is the difference between private and public notes?</button></h2>
+              <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  <p>By default, all notes are private and can only be seen by you. When you make a note public:</p>
+                  <ul>
+                    <li>It becomes visible in the public notes section of the app</li>
+                    <li>Anyone with the direct link can view it</li>
+                    <li>The note content will be visible without requiring a login</li>
+                  </ul>
+                  <p>You can toggle a note between private and public at any time from the note's edit page.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingFive"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">How do I change my password or update my profile?</button></h2>
+              <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  <p>To update your profile or change your password:</p>
+                  <ol>
+                    <li>Click on your name in the top-right corner of the page</li>
+                    <li>Select "Profile" to update your personal information</li>
+                    <li>Select "Change Password" if you want to update your password</li>
+                  </ol>
+                  <p>You can also recover your password using the "Forgot Password" link on the login page.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingSix"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">Is my data secure?</button></h2>
+              <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  <p>Yes, we take data security very seriously. Here's how we protect your information:</p>
+                  <ul>
+                    <li>All data is transmitted via secure HTTPS connections</li>
+                    <li>Passwords are securely hashed and never stored in plain text</li>
+                    <li>Regular security audits and updates</li>
+                    <li>Private notes are only accessible to you when logged in</li>
+                  </ul>
+                  <p>
+                    If you have specific security concerns, please <a href="{% url 'website:contact' %}">contact us</a>.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-5 text-center">
+            <p class="mb-4">Still have questions? We're here to help!</p>
+            <a href="{% url 'website:contact' %}" class="btn btn-primary"><i class="bi bi-envelope me-2"></i>Contact Support</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

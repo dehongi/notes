@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Welcome to Notes App
+{% endblock %}
+
+{% block content %}
+  <div class="row mt-5 mb-5">
+    <div class="col-lg-8 mx-auto text-center">
+      <h1 class="display-4 mb-3">Capture Your Thoughts Anytime, Anywhere</h1>
+      <p class="lead mb-4">A simple and elegant way to keep track of your ideas, tasks, and important information.</p>
+
+      {% if user.is_authenticated %}
+        <div class="mt-4">
+          <a href="{% url 'notes:note_list' %}" class="btn btn-primary btn-lg px-4 me-2"><i class="bi bi-journals me-2"></i>My Notes</a>
+          <a href="{% url 'notes:note_create' %}" class="btn btn-success btn-lg px-4"><i class="bi bi-plus-circle me-2"></i>Create Note</a>
+        </div>
+      {% else %}
+        <div class="mt-4">
+          <a href="{% url 'accounts:signup' %}" class="btn btn-success btn-lg px-4 me-2"><i class="bi bi-person-plus me-2"></i>Sign Up</a>
+          <a href="{% url 'accounts:login' %}" class="btn btn-outline-primary btn-lg px-4"><i class="bi bi-box-arrow-in-right me-2"></i>Log In</a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <hr class="my-5" />
+
+  <div class="row g-4 mb-5">
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body text-center">
+          <i class="bi bi-shield-lock text-primary" style="font-size: 3rem;"></i>
+          <h3 class="h4 mt-3">Secure & Private</h3>
+          <p class="card-text">Keep your notes private or share them with the world. You have complete control.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body text-center">
+          <i class="bi bi-lightning-charge text-primary" style="font-size: 3rem;"></i>
+          <h3 class="h4 mt-3">Fast & Responsive</h3>
+          <p class="card-text">Access your notes from any device with our clean, modern interface.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body text-center">
+          <i class="bi bi-cloud-arrow-up text-primary" style="font-size: 3rem;"></i>
+          <h3 class="h4 mt-3">Cloud-Powered</h3>
+          <p class="card-text">Your notes are safely stored in the cloud and available wherever you go.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% if not user.is_authenticated %}
+    <div class="row mb-5">
+      <div class="col-lg-10 mx-auto">
+        <div class="card bg-light border-0">
+          <div class="card-body p-4 p-lg-5 text-center">
+            <h2 class="mb-4">Ready to get started?</h2>
+            <p class="mb-4">Create your account today and start organizing your thoughts efficiently!</p>
+            <a href="{% url 'accounts:signup' %}" class="btn btn-success btn-lg px-4"><i class="bi bi-person-plus me-2"></i>Sign Up Now — It's Free!</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}
