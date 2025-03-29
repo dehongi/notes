@@ -88,3 +88,39 @@
     </div>
   </div>
 {% endblock %}
+
+{% block extra_js %}
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const imgInput = document.getElementById('id_profile_picture')
+      const previewContainer = document.createElement('div')
+      previewContainer.classList.add('mt-3')
+    
+      if (imgInput) {
+        imgInput.parentNode.insertBefore(previewContainer, imgInput.nextSibling)
+    
+        imgInput.addEventListener('change', function () {
+          previewContainer.innerHTML = ''
+          if (this.files && this.files[0]) {
+            const img = document.createElement('img')
+            img.classList.add('rounded-circle', 'border')
+            img.style.width = '150px'
+            img.style.height = '150px'
+            img.style.objectFit = 'cover'
+    
+            const reader = new FileReader()
+            reader.onload = function (e) {
+              img.src = e.target.result
+              previewContainer.appendChild(img)
+              const caption = document.createElement('p')
+              caption.classList.add('text-muted', 'small', 'mt-2')
+              caption.textContent = 'Preview (will be cropped to square)'
+              previewContainer.appendChild(caption)
+            }
+            reader.readAsDataURL(this.files[0])
+          }
+        })
+      }
+    })
+  </script>
+{% endblock %}

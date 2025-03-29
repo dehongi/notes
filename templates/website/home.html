@@ -6,7 +6,7 @@
 
 {% block content %}
   <!-- Hero Section -->
-  <div class="hero-section">
+  <div class="hero-section fade-in">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto text-center">
@@ -32,28 +32,28 @@
   <!-- Features Section -->
   <div class="container py-5">
     <div class="row g-4">
-      <div class="col-md-4">
+      <div class="col-md-4 slide-up" style="animation-delay: 0.1s;">
         <div class="card h-100 shadow-hover">
           <div class="card-body text-center p-4">
-            <i class="bi bi-shield-lock text-primary" style="font-size: 2.5rem;"></i>
+            <i class="bi bi-shield-lock text-primary feature-icon"></i>
             <h3 class="h4 mt-3">Secure & Private</h3>
             <p class="card-text">Keep your notes private or share them with the world.</p>
           </div>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 slide-up" style="animation-delay: 0.2s;">
         <div class="card h-100 shadow-hover">
           <div class="card-body text-center p-4">
-            <i class="bi bi-lightning-charge text-primary" style="font-size: 2.5rem;"></i>
+            <i class="bi bi-lightning-charge text-primary feature-icon"></i>
             <h3 class="h4 mt-3">Fast & Responsive</h3>
             <p class="card-text">Access your notes from any device with our clean, modern interface.</p>
           </div>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 slide-up" style="animation-delay: 0.3s;">
         <div class="card h-100 shadow-hover">
           <div class="card-body text-center p-4">
-            <i class="bi bi-cloud-arrow-up text-primary" style="font-size: 2.5rem;"></i>
+            <i class="bi bi-cloud-arrow-up text-primary feature-icon"></i>
             <h3 class="h4 mt-3">Cloud-Powered</h3>
             <p class="card-text">Your notes are safely stored in the cloud and available wherever you go.</p>
           </div>
@@ -68,7 +68,7 @@
       <h2 class="h3 mb-4 text-center">Your Latest Notes</h2>
       <div class="row g-4">
         {% for note in user_notes %}
-          <div class="col-md-6 col-lg-4">
+          <div class="col-md-6 col-lg-4 slide-up" style="animation-delay: {{ forloop.counter0|floatformat:1 }}s;">
             <div class="card h-100 shadow-hover">
               {% if note.is_public %}
                 <div class="card-header bg-success bg-opacity-10">
@@ -104,15 +104,29 @@
       <h2 class="h3 mb-4 text-center">Latest Public Notes</h2>
       <div class="row g-4">
         {% for note in public_notes|slice:':6' %}
-          <div class="col-md-6 col-lg-4">
+          <div class="col-md-6 col-lg-4 slide-up" style="animation-delay: {{ forloop.counter0|floatformat:1 }}s;">
             <div class="card h-100 shadow-hover">
               <div class="card-body">
                 <h3 class="h5 card-title text-truncate">{{ note.title }}</h3>
-                <p class="text-muted small">
-                  <i class="bi bi-person"></i> {{ note.user.get_full_name|default:note.user.email }}
-                  <br />
-                  <i class="bi bi-calendar"></i> {{ note.created_at|date:'M d, Y' }}
-                </p>
+
+                <div class="d-flex align-items-center mb-3">
+                  <div class="flex-shrink-0">
+                    {% if note.user.profile_picture %}
+                      <img src="{{ note.user.profile_picture.url }}" alt="{{ note.user.get_full_name }}" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover;" />
+                    {% else %}
+                      <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; font-size: 1rem;">{{ note.user.first_name|slice:':1'|upper }}</div>
+                    {% endif %}
+                  </div>
+                  <div class="flex-grow-1 ms-2">
+                    <p class="mb-0">
+                      <a href="{% url 'accounts:public_profile' note.user.slug %}" class="text-decoration-none fw-bold">{{ note.user.get_full_name|default:note.user.email }}</a>
+                    </p>
+                    <p class="text-muted small mb-0">
+                      <i class="bi bi-calendar"></i> {{ note.created_at|date:'M d, Y' }}
+                    </p>
+                  </div>
+                </div>
+
                 <p class="card-text text-truncate-3">{{ note.content }}</p>
               </div>
               <div class="card-footer bg-transparent">
@@ -133,7 +147,7 @@
     <div class="container py-5">
       <div class="row">
         <div class="col-lg-10 mx-auto">
-          <div class="card bg-primary text-white border-0 shadow">
+          <div class="card bg-primary text-white border-0 shadow fade-in">
             <div class="card-body p-4 p-lg-5 text-center">
               <h2 class="mb-4">Ready to get started?</h2>
               <p class="lead mb-4">Create your account today and start organizing your thoughts!</p>

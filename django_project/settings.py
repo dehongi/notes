@@ -37,9 +37,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # Third party apps
+    "imagekit",
+    # Local apps
     "accounts.apps.AccountsConfig",
     "website.apps.WebsiteConfig",
     "notes.apps.NotesConfig",
+    # Django Cleanup
+    "django_cleanup.apps.CleanupConfig",
 ]
 
 MIDDLEWARE = [

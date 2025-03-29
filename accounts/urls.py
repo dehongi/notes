@@ -42,4 +42,9 @@ urlpatterns = [
     # Profile
     path("profile/", views.ProfileView.as_view(), name="profile"),
     path("profile/edit/", views.ProfileUpdateView.as_view(), name="profile_edit"),
+    path(
+        "profile/public/<str:slug>/",
+        views.PublicProfileView.as_view(),
+        name="public_profile",
+    ),
 ]

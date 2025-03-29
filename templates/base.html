@@ -34,18 +34,23 @@
       <title>{{ meta.title }}</title>
       <meta name="description" content="{{ meta.description }}" />
       <meta name="viewport" content="{{ meta.viewport|default:'width=device-width, initial-scale=1.0' }}" />
+      <link rel="icon" type="image/png" href="/static/pwa/favicon-96x96.png" sizes="96x96" />
+      <link rel="icon" type="image/svg+xml" href="/static/pwa/favicon.svg" />
+      <link rel="shortcut icon" href="/static/pwa/favicon.ico" />
+      <link rel="apple-touch-icon" sizes="180x180" href="/static/pwa/apple-touch-icon.png" />
+      <meta name="apple-mobile-web-app-title" content="Notes" />
+      <link rel="manifest" href="/static/pwa/site.webmanifest" />
       {% if meta.mobile_app %}
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         <meta name="apple-mobile-web-app-title" content="Notes App" />
         <meta name="theme-color" content="{{ meta.theme_color|default:'#0d6efd' }}" />
-        <link rel="manifest" href="{% static 'manifest.json' %}" />
       {% endif %}
     {% endif %}
   </head>
   <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <div class="container">
         <a class="navbar-brand" href="{% url 'website:home' %}"><i class="bi bi-journal-text me-2"></i>Notes App</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
@@ -95,7 +100,7 @@
                 <a class="nav-link" href="{% url 'accounts:login' %}"><i class="bi bi-box-arrow-in-right me-1"></i>Log In</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'accounts:signup' %}"><i class="bi bi-person-plus me-1"></i>Sign Up</a>
+                <a class="nav-link btn btn-outline-light ms-2 py-1 px-3" href="{% url 'accounts:signup' %}"><i class="bi bi-person-plus me-1"></i>Sign Up</a>
               </li>
             {% endif %}
           </ul>
@@ -105,9 +110,9 @@
 
     <!-- Messages -->
     {% if messages %}
-      <div class="container">
+      <div class="container mt-4">
         {% for message in messages %}
-          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+          <div class="alert alert-{{ message.tags }} alert-dismissible fade show slide-up" role="alert">
             {{ message }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
@@ -123,7 +128,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-light py-3 mt-4">
+    <footer>
       <div class="container">
         <div class="row">
           <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
@@ -132,11 +137,11 @@
             </p>
           </div>
           <div class="col-md-6 text-center text-md-end">
-            <a href="{% url 'website:about' %}" class="text-decoration-none text-muted me-3">About</a>
-            <a href="{% url 'website:contact' %}" class="text-decoration-none text-muted me-3">Contact</a>
-            <a href="{% url 'website:faq' %}" class="text-decoration-none text-muted me-3">FAQ</a>
-            <a href="{% url 'website:terms' %}" class="text-decoration-none text-muted me-3">Terms</a>
-            <a href="{% url 'website:privacy' %}" class="text-decoration-none text-muted">Privacy</a>
+            <a href="{% url 'website:about' %}" class="me-3">About</a>
+            <a href="{% url 'website:contact' %}" class="me-3">Contact</a>
+            <a href="{% url 'website:faq' %}" class="me-3">FAQ</a>
+            <a href="{% url 'website:terms' %}" class="me-3">Terms</a>
+            <a href="{% url 'website:privacy' %}">Privacy</a>
           </div>
         </div>
       </div>

@@ -15,4 +15,11 @@ urlpatterns = [
         views.PublicNoteDetailView.as_view(),
         name="public_note_detail",
     ),
+    path(
+        "public/user/<str:slug>/",
+        views.PublicNotesByUserListView.as_view(),
+        name="public_notes_by_user",
+    ),
+    path("<int:pk>/comment/", views.add_comment, name="add_comment"),
+    path("comment/<int:pk>/delete/", views.delete_comment, name="delete_comment"),
 ]

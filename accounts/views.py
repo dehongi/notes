@@ -102,8 +102,38 @@ class ProfileView(LoginRequiredMixin, DetailView):
     template_name = "accounts/profile.html"
     context_object_name = "user"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["meta"] = {
+            "title": "Profile",
+            "description": "View your profile information",
+            "viewport": "width=device-width, initial-scale=1.0",
+        }
+        context["notes_count"] = self.object.notes.count()
+        context["public_notes_count"] = self.object.notes.filter(is_public=True).count()
+        return context
+
     def get_object(self):
         return self.request.user
+
+
+class PublicProfileView(DetailView):
+    model = CustomUser
+    template_name = "accounts/public_profile.html"
+    context_object_name = "profile_user"
+    slug_field = "slug"
+    slug_url_kwarg = "slug"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["meta"] = {
+            "title": f"{self.object.get_full_name()}'s Profile",
+            "description": f"View {self.object.get_full_name()}'s public notes",
+            "viewport": "width=device-width, initial-scale=1.0",
+        }
+        context["public_notes"] = self.object.notes.filter(is_public=True)
+        context["public_notes_count"] = context["public_notes"].count()
+        return context
 
 
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):

@@ -7,6 +7,7 @@ from django.contrib.auth.forms import (
     PasswordChangeForm,
 )
 from django.contrib.auth import get_user_model
+from .models import CustomUser
 
 User = get_user_model()
 
@@ -116,5 +117,19 @@ class ProfileUpdateForm(forms.ModelForm):
     )
 
     class Meta:
-        model = User
-        fields = ("first_name", "last_name", "bio", "profile_picture")
+        model = CustomUser
+        fields = ["first_name", "last_name", "bio", "profile_picture"]
+        widgets = {
+            "first_name": forms.TextInput(attrs={"class": "form-control"}),
+            "last_name": forms.TextInput(attrs={"class": "form-control"}),
+            "bio": forms.Textarea(attrs={"class": "form-control", "rows": 4}),
+            "profile_picture": forms.ClearableFileInput(
+                attrs={"class": "form-control"}
+            ),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["profile_picture"].help_text = (
+            "Upload a square image for best results. It will be cropped to 500x500 pixels."
+        )
