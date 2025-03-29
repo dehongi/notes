@@ -5,65 +5,140 @@
 {% endblock %}
 
 {% block content %}
-  <div class="row mt-5 mb-5">
-    <div class="col-lg-8 mx-auto text-center">
-      <h1 class="display-4 mb-3">Capture Your Thoughts Anytime, Anywhere</h1>
-      <p class="lead mb-4">A simple and elegant way to keep track of your ideas, tasks, and important information.</p>
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+          <h1 class="display-4 mb-3">Capture Your Thoughts</h1>
+          <p class="lead mb-4">Keep track of your ideas, anywhere, anytime.</p>
 
-      {% if user.is_authenticated %}
-        <div class="mt-4">
-          <a href="{% url 'notes:note_list' %}" class="btn btn-primary btn-lg px-4 me-2"><i class="bi bi-journals me-2"></i>My Notes</a>
-          <a href="{% url 'notes:note_create' %}" class="btn btn-success btn-lg px-4"><i class="bi bi-plus-circle me-2"></i>Create Note</a>
-        </div>
-      {% else %}
-        <div class="mt-4">
-          <a href="{% url 'accounts:signup' %}" class="btn btn-success btn-lg px-4 me-2"><i class="bi bi-person-plus me-2"></i>Sign Up</a>
-          <a href="{% url 'accounts:login' %}" class="btn btn-outline-primary btn-lg px-4"><i class="bi bi-box-arrow-in-right me-2"></i>Log In</a>
-        </div>
-      {% endif %}
-    </div>
-  </div>
-
-  <hr class="my-5" />
-
-  <div class="row g-4 mb-5">
-    <div class="col-md-4">
-      <div class="card h-100 shadow-sm">
-        <div class="card-body text-center">
-          <i class="bi bi-shield-lock text-primary" style="font-size: 3rem;"></i>
-          <h3 class="h4 mt-3">Secure & Private</h3>
-          <p class="card-text">Keep your notes private or share them with the world. You have complete control.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card h-100 shadow-sm">
-        <div class="card-body text-center">
-          <i class="bi bi-lightning-charge text-primary" style="font-size: 3rem;"></i>
-          <h3 class="h4 mt-3">Fast & Responsive</h3>
-          <p class="card-text">Access your notes from any device with our clean, modern interface.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card h-100 shadow-sm">
-        <div class="card-body text-center">
-          <i class="bi bi-cloud-arrow-up text-primary" style="font-size: 3rem;"></i>
-          <h3 class="h4 mt-3">Cloud-Powered</h3>
-          <p class="card-text">Your notes are safely stored in the cloud and available wherever you go.</p>
+          {% if user.is_authenticated %}
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-4">
+              <a href="{% url 'notes:note_list' %}" class="btn btn-primary btn-lg px-4 me-sm-2"><i class="bi bi-journals me-2"></i>My Notes</a>
+              <a href="{% url 'notes:note_create' %}" class="btn btn-success btn-lg px-4"><i class="bi bi-plus-circle me-2"></i>New Note</a>
+            </div>
+          {% else %}
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-4">
+              <a href="{% url 'accounts:signup' %}" class="btn btn-success btn-lg px-4 me-sm-2"><i class="bi bi-person-plus me-2"></i>Sign Up</a>
+              <a href="{% url 'accounts:login' %}" class="btn btn-outline-primary btn-lg px-4"><i class="bi bi-box-arrow-in-right me-2"></i>Log In</a>
+            </div>
+          {% endif %}
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Features Section -->
+  <div class="container py-5">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card h-100 shadow-hover">
+          <div class="card-body text-center p-4">
+            <i class="bi bi-shield-lock text-primary" style="font-size: 2.5rem;"></i>
+            <h3 class="h4 mt-3">Secure & Private</h3>
+            <p class="card-text">Keep your notes private or share them with the world.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-hover">
+          <div class="card-body text-center p-4">
+            <i class="bi bi-lightning-charge text-primary" style="font-size: 2.5rem;"></i>
+            <h3 class="h4 mt-3">Fast & Responsive</h3>
+            <p class="card-text">Access your notes from any device with our clean, modern interface.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-hover">
+          <div class="card-body text-center p-4">
+            <i class="bi bi-cloud-arrow-up text-primary" style="font-size: 2.5rem;"></i>
+            <h3 class="h4 mt-3">Cloud-Powered</h3>
+            <p class="card-text">Your notes are safely stored in the cloud and available wherever you go.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% if user.is_authenticated and user_notes %}
+    <!-- User's Notes Section -->
+    <div class="container py-5">
+      <h2 class="h3 mb-4 text-center">Your Latest Notes</h2>
+      <div class="row g-4">
+        {% for note in user_notes %}
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-hover">
+              {% if note.is_public %}
+                <div class="card-header bg-success bg-opacity-10">
+                  <i class="bi bi-globe me-1"></i> Public Note
+                </div>
+              {% endif %}
+              <div class="card-body">
+                <h3 class="h5 card-title text-truncate">{{ note.title }}</h3>
+                <p class="text-muted small">
+                  <i class="bi bi-calendar"></i> {{ note.created_at|date:'M d, Y' }}
+                </p>
+                <p class="card-text text-truncate-3">{{ note.content }}</p>
+              </div>
+              <div class="card-footer bg-transparent">
+                <div class="d-flex justify-content-between align-items-center">
+                  <a href="{% url 'notes:note_detail' note.pk %}" class="btn btn-sm btn-outline-primary"><i class="bi bi-eye me-1"></i>View</a>
+                  <a href="{% url 'notes:note_update' note.pk %}" class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="text-center mt-4">
+        <a href="{% url 'notes:note_list' %}" class="btn btn-outline-primary"><i class="bi bi-journals me-2"></i>View All Notes</a>
+      </div>
+    </div>
+  {% endif %}
+
+  {% if public_notes %}
+    <!-- Public Notes Section -->
+    <div class="container py-5">
+      <h2 class="h3 mb-4 text-center">Latest Public Notes</h2>
+      <div class="row g-4">
+        {% for note in public_notes|slice:':6' %}
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-hover">
+              <div class="card-body">
+                <h3 class="h5 card-title text-truncate">{{ note.title }}</h3>
+                <p class="text-muted small">
+                  <i class="bi bi-person"></i> {{ note.user.get_full_name|default:note.user.email }}
+                  <br />
+                  <i class="bi bi-calendar"></i> {{ note.created_at|date:'M d, Y' }}
+                </p>
+                <p class="card-text text-truncate-3">{{ note.content }}</p>
+              </div>
+              <div class="card-footer bg-transparent">
+                <a href="{% url 'notes:public_note_detail' note.pk %}" class="btn btn-sm btn-outline-primary w-100"><i class="bi bi-eye me-1"></i>Read More</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="text-center mt-4">
+        <a href="{% url 'notes:public_note_list' %}" class="btn btn-outline-primary"><i class="bi bi-journals me-2"></i>View All Public Notes</a>
+      </div>
+    </div>
+  {% endif %}
 
   {% if not user.is_authenticated %}
-    <div class="row mb-5">
-      <div class="col-lg-10 mx-auto">
-        <div class="card bg-light border-0">
-          <div class="card-body p-4 p-lg-5 text-center">
-            <h2 class="mb-4">Ready to get started?</h2>
-            <p class="mb-4">Create your account today and start organizing your thoughts efficiently!</p>
-            <a href="{% url 'accounts:signup' %}" class="btn btn-success btn-lg px-4"><i class="bi bi-person-plus me-2"></i>Sign Up Now — It's Free!</a>
+    <!-- Call to Action Section -->
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <div class="card bg-primary text-white border-0 shadow">
+            <div class="card-body p-4 p-lg-5 text-center">
+              <h2 class="mb-4">Ready to get started?</h2>
+              <p class="lead mb-4">Create your account today and start organizing your thoughts!</p>
+              <a href="{% url 'accounts:signup' %}" class="btn btn-light btn-lg px-4"><i class="bi bi-person-plus me-2"></i>Sign Up Now — It's Free!</a>
+            </div>
           </div>
         </div>
       </div>
