@@ -76,6 +76,18 @@ class CustomUser(AbstractUser):
     def get_short_name(self):
         return self.first_name
 
+    def follower_count(self):
+        """Return the number of users following this user."""
+        return self.followers.count()
+
+    def following_count(self):
+        """Return the number of users this user is following."""
+        return self.following.count()
+
+    def is_following(self, user):
+        """Check if this user is following the given user."""
+        return self.following.filter(followed=user).exists()
+
     def save(self, *args, **kwargs):
         if not self.slug:
             # Get the username portion of the email (before @)
@@ -103,3 +115,23 @@ class CustomUser(AbstractUser):
             self.slug = slug
 
         super().save(*args, **kwargs)
+
+
+class Follow(models.Model):
+    """
+    Model to represent following relationships between users.
+    """
+
+    follower = models.ForeignKey(
+        CustomUser, related_name="following", on_delete=models.CASCADE
+    )
+    followed = models.ForeignKey(
+        CustomUser, related_name="followers", on_delete=models.CASCADE
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ("follower", "followed")
+
+    def __str__(self):
+        return f"{self.follower} follows {self.followed}"

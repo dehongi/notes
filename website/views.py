@@ -26,6 +26,14 @@ def home(request):
             "private_notes": user_notes.filter(is_public=False).count(),
         }
 
+        # Add following information for follow buttons
+        from accounts.models import Follow
+
+        following_ids = Follow.objects.filter(follower=request.user).values_list(
+            "followed_id", flat=True
+        )
+        context["following_ids"] = list(following_ids)
+
     # Add PWA and mobile-specific metadata
     context["meta"] = {
         "title": "Notes App - Capture Your Thoughts",

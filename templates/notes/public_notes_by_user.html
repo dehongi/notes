@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  {{ profile_user.get_full_name }}'s Public Notes
+{% endblock %}
+
+{% block content %}
+  <div class="container py-5">
+    <div class="row mb-4">
+      <div class="col-lg-10 mx-auto">
+        <div class="d-flex align-items-center mb-4">
+          <div class="flex-shrink-0 me-3">
+            {% if profile_user.profile_picture %}
+              <img src="{{ profile_user.profile_picture.url }}" alt="{{ profile_user.get_full_name }}" class="rounded-circle" style="width: 60px; height: 60px; object-fit: cover;" />
+            {% else %}
+              <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 60px; height: 60px; font-size: 1.5rem;">{{ profile_user.first_name|slice:':1'|upper }}</div>
+            {% endif %}
+          </div>
+          <div>
+            <h1 class="h3 mb-1">{{ profile_user.get_full_name }}'s Public Notes</h1>
+            <div class="d-flex align-items-center">
+              <a href="{% url 'accounts:public_profile' profile_user.slug %}" class="text-decoration-none me-3"><i class="bi bi-person-circle"></i> View Profile</a>
+              {% if user.is_authenticated and user != profile_user %}
+                {% if is_following %}
+                  <a href="{% url 'accounts:unfollow' profile_user.slug %}" class="btn btn-sm btn-outline-primary"><i class="bi bi-person-dash me-1"></i>Unfollow</a>
+                {% else %}
+                  <a href="{% url 'accounts:follow' profile_user.slug %}" class="btn btn-sm btn-primary"><i class="bi bi-person-plus me-1"></i>Follow</a>
+                {% endif %}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% if notes %}
+      <div class="row">
+        {% for note in notes %}
+          <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <h3 class="h5 card-title text-truncate">{{ note.title }}</h3>
+                <p class="text-muted small">
+                  <i class="bi bi-calendar"></i> {{ note.created_at|date:'M d, Y' }}
+                </p>
+                <p class="card-text text-truncate-3">{{ note.content }}</p>
+              </div>
+              <div class="card-footer bg-transparent">
+                <a href="{% url 'notes:public_note_detail' note.pk %}" class="btn btn-sm btn-outline-primary w-100"><i class="bi bi-eye me-1"></i>Read More</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      {% if is_paginated %}
+        <nav aria-label="Page navigation" class="mt-4">
+          <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+              <li class="page-item">
+                <a class="page-link" href="?page=1" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+              </li>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+              {% if page_obj.number == num %}
+                <li class="page-item active">
+                  <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                </li>
+              {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <li class="page-item">
+                  <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                </li>
+              {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+              </li>
+            {% endif %}
+          </ul>
+        </nav>
+      {% endif %}
+    {% else %}
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <div class="card shadow-hover text-center">
+            <div class="card-body py-5">
+              <i class="bi bi-journal-x text-muted" style="font-size: 3rem;"></i>
+              <h3 class="mt-4">No Public Notes Yet</h3>
+              <p class="text-muted">{{ profile_user.get_short_name }} hasn't published any public notes yet.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}

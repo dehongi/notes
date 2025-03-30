@@ -47,4 +47,17 @@ urlpatterns = [
         views.PublicProfileView.as_view(),
         name="public_profile",
     ),
+    # Following System
+    path("follow/<str:slug>/", views.follow_user, name="follow"),
+    path("unfollow/<str:slug>/", views.unfollow_user, name="unfollow"),
+    path(
+        "profile/<str:slug>/followers/",
+        views.FollowersListView.as_view(),
+        name="followers",
+    ),
+    path(
+        "profile/<str:slug>/following/",
+        views.FollowingListView.as_view(),
+        name="following",
+    ),
 ]

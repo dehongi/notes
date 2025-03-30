@@ -79,10 +79,24 @@ class PublicNoteListView(ListView):
     model = Note
     template_name = "notes/public_note_list.html"
     context_object_name = "notes"
-    paginate_by = 10
+    paginate_by = 12
 
     def get_queryset(self):
-        return Note.objects.filter(is_public=True).order_by("-updated_at")
+        return Note.objects.filter(is_public=True).order_by("-created_at")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Add following information if user is authenticated
+        if self.request.user.is_authenticated:
+            from accounts.models import Follow
+
+            following_ids = Follow.objects.filter(
+                follower=self.request.user
+            ).values_list("followed_id", flat=True)
+            context["following_ids"] = list(following_ids)
+
+        return context
 
 
 class PublicNoteDetailView(DetailView):
@@ -90,15 +104,27 @@ class PublicNoteDetailView(DetailView):
     template_name = "notes/public_note_detail.html"
     context_object_name = "note"
 
-    def get_queryset(self):
-        return Note.objects.filter(is_public=True)
+    def get_object(self, queryset=None):
+        # Get the object and verify it's a public note
+        obj = super().get_object(queryset)
+        if not obj.is_public:
+            raise Http404("This note is not public.")
+        return obj
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["comments"] = self.object.comments.filter(is_active=True)
 
+        # Add comment form
+        context["comment_form"] = CommentForm()
+
+        # Add following information if user is authenticated
         if self.request.user.is_authenticated:
-            context["comment_form"] = CommentForm()
+            from accounts.models import Follow
+
+            following_ids = Follow.objects.filter(
+                follower=self.request.user
+            ).values_list("followed_id", flat=True)
+            context["following_ids"] = list(following_ids)
 
         return context
 
@@ -130,6 +156,22 @@ class PublicNotesByUserListView(ListView):
             "title": f"{user.get_full_name()}'s Public Notes",
             "description": f"Browse public notes shared by {user.get_full_name()}",
         }
+
+        # Add following information if user is authenticated
+        if self.request.user.is_authenticated:
+            from accounts.models import Follow
+
+            # Check if current user is following the profile user
+            context["is_following"] = Follow.objects.filter(
+                follower=self.request.user, followed=user
+            ).exists()
+
+            # Get all users the current user is following for other note authors
+            following_ids = Follow.objects.filter(
+                follower=self.request.user
+            ).values_list("followed_id", flat=True)
+            context["following_ids"] = list(following_ids)
+
         return context
 
 
@@ -181,3 +223,24 @@ def delete_comment(request, pk):
         return redirect("notes:note_detail", pk=note.pk)
     else:
         return redirect("notes:public_note_detail", pk=note.pk)
+
+
+def index(request):
+    """Home page view."""
+    # Get featured notes for homepage
+    featured_notes = Note.objects.filter(is_public=True).order_by("-created_at")[:6]
+
+    context = {
+        "featured_notes": featured_notes,
+    }
+
+    # Add following information if user is authenticated
+    if request.user.is_authenticated:
+        from accounts.models import Follow
+
+        following_ids = Follow.objects.filter(follower=request.user).values_list(
+            "followed_id", flat=True
+        )
+        context["following_ids"] = list(following_ids)
+
+    return render(request, "website/home.html", context)

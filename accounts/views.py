@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, DetailView
+from django.urls import reverse_lazy, reverse
+from django.views.generic import CreateView, UpdateView, DetailView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import JsonResponse, HttpResponseRedirect
 from django.contrib.auth.views import (
     LoginView,
     LogoutView,
@@ -24,7 +25,7 @@ from .forms import (
     CustomPasswordChangeForm,
     ProfileUpdateForm,
 )
-from .models import CustomUser
+from .models import CustomUser, Follow
 
 
 class SignUpView(CreateView):
@@ -126,13 +127,22 @@ class PublicProfileView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        # Add meta information
         context["meta"] = {
             "title": f"{self.object.get_full_name()}'s Profile",
             "description": f"View {self.object.get_full_name()}'s public notes",
             "viewport": "width=device-width, initial-scale=1.0",
         }
+
+        # Add notes information
         context["public_notes"] = self.object.notes.filter(is_public=True)
         context["public_notes_count"] = context["public_notes"].count()
+
+        # Add following information
+        if self.request.user.is_authenticated:
+            context["is_following"] = self.request.user.is_following(self.object)
+
         return context
 
 
@@ -148,3 +158,121 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         messages.success(self.request, "Your profile has been updated!")
         return super().form_valid(form)
+
+
+@login_required
+def follow_user(request, slug):
+    user_to_follow = get_object_or_404(CustomUser, slug=slug)
+
+    # Don't allow users to follow themselves
+    if request.user == user_to_follow:
+        messages.error(request, "You cannot follow yourself.")
+        return redirect("accounts:public_profile", slug=slug)
+
+    # Check if already following
+    if not request.user.is_following(user_to_follow):
+        Follow.objects.create(follower=request.user, followed=user_to_follow)
+        messages.success(
+            request, f"You are now following {user_to_follow.get_full_name()}."
+        )
+    else:
+        messages.info(
+            request, f"You are already following {user_to_follow.get_full_name()}."
+        )
+
+    # Handle AJAX requests
+    if request.headers.get("x-requested-with") == "XMLHttpRequest":
+        return JsonResponse(
+            {
+                "status": "success",
+                "is_following": True,
+                "follower_count": user_to_follow.follower_count(),
+            }
+        )
+
+    return redirect("accounts:public_profile", slug=slug)
+
+
+@login_required
+def unfollow_user(request, slug):
+    user_to_unfollow = get_object_or_404(CustomUser, slug=slug)
+
+    # Try to find and delete the Follow relationship
+    follow = Follow.objects.filter(
+        follower=request.user, followed=user_to_unfollow
+    ).first()
+    if follow:
+        follow.delete()
+        messages.success(
+            request, f"You have unfollowed {user_to_unfollow.get_full_name()}."
+        )
+    else:
+        messages.info(
+            request, f"You were not following {user_to_unfollow.get_full_name()}."
+        )
+
+    # Handle AJAX requests
+    if request.headers.get("x-requested-with") == "XMLHttpRequest":
+        return JsonResponse(
+            {
+                "status": "success",
+                "is_following": False,
+                "follower_count": user_to_unfollow.follower_count(),
+            }
+        )
+
+    return redirect("accounts:public_profile", slug=slug)
+
+
+class FollowersListView(LoginRequiredMixin, ListView):
+    model = CustomUser
+    template_name = "accounts/followers_list.html"
+    context_object_name = "followers"
+    paginate_by = 20
+
+    def get_queryset(self):
+        self.user = get_object_or_404(CustomUser, slug=self.kwargs["slug"])
+        follower_ids = Follow.objects.filter(followed=self.user).values_list(
+            "follower_id", flat=True
+        )
+        return CustomUser.objects.filter(id__in=follower_ids)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["profile_user"] = self.user
+
+        # Add is_following status for each follower if the user is authenticated
+        if self.request.user.is_authenticated:
+            following_ids = Follow.objects.filter(
+                follower=self.request.user
+            ).values_list("followed_id", flat=True)
+            context["following_ids"] = list(following_ids)
+
+        return context
+
+
+class FollowingListView(LoginRequiredMixin, ListView):
+    model = CustomUser
+    template_name = "accounts/following_list.html"
+    context_object_name = "following"
+    paginate_by = 20
+
+    def get_queryset(self):
+        self.user = get_object_or_404(CustomUser, slug=self.kwargs["slug"])
+        following_ids = Follow.objects.filter(follower=self.user).values_list(
+            "followed_id", flat=True
+        )
+        return CustomUser.objects.filter(id__in=following_ids)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["profile_user"] = self.user
+
+        # Add is_following status for each followed user if the user is authenticated
+        if self.request.user.is_authenticated:
+            following_ids = Follow.objects.filter(
+                follower=self.request.user
+            ).values_list("followed_id", flat=True)
+            context["following_ids"] = list(following_ids)
+
+        return context

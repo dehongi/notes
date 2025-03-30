@@ -22,6 +22,13 @@
             <div class="flex-grow-1 ms-3">
               <p class="mb-0">
                 <a href="{% url 'accounts:public_profile' note.user.slug %}" class="text-decoration-none fw-bold">{{ note.user.get_full_name }}</a>
+                {% if user.is_authenticated and user != note.user %}
+                  {% if note.user.id in following_ids %}
+                    <a href="{% url 'accounts:unfollow' note.user.slug %}" class="btn btn-sm btn-outline-primary ms-2" title="Unfollow"><i class="bi bi-person-dash"></i></a>
+                  {% else %}
+                    <a href="{% url 'accounts:follow' note.user.slug %}" class="btn btn-sm btn-primary ms-2" title="Follow"><i class="bi bi-person-plus"></i></a>
+                  {% endif %}
+                {% endif %}
               </p>
               <p class="text-muted small mb-0">
                 <i class="bi bi-calendar"></i> {{ note.created_at|date:'F d, Y' }}
