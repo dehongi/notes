@@ -1,77 +1,180 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  Contact Us
+  Contact Notely - Get In Touch
 {% endblock %}
 
 {% block content %}
-  <div class="row">
-    <div class="col-lg-8 mx-auto">
-      <div class="card shadow">
-        <div class="card-body p-4 p-lg-5">
-          <h1 class="display-5 mb-4">Contact Us</h1>
-
-          <p class="lead mb-4">Have questions or feedback? We'd love to hear from you.</p>
-
-          <div class="row mb-5">
-            <div class="col-md-4 mb-4 mb-md-0">
-              <div class="text-center mb-4">
-                <i class="bi bi-envelope text-primary" style="font-size: 2.5rem;"></i>
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto text-center mb-5" data-aos="fade-up">
+          <h1 class="display-5 fw-bold mb-3">Contact Us</h1>
+          <p class="lead text-secondary mx-auto" style="max-width: 700px;">Have questions, suggestions, or feedback? We'd love to hear from you and help with anything you need.</p>
+        </div>
+      </div>
+      
+      <div class="row g-4 mb-5">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="card border-0 shadow-sm rounded-4 h-100">
+            <div class="card-body p-4 text-center">
+              <div class="icon-circle bg-primary bg-opacity-25 p-3 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                <i class="bi bi-envelope-open fs-2 text-white"></i>
               </div>
-              <h3 class="h5 text-center mb-2">Email</h3>
-              <p class="text-center mb-0">
-                <a href="mailto:support@notesapp.com" class="text-decoration-none">support@notesapp.com</a>
-              </p>
-            </div>
-            <div class="col-md-4 mb-4 mb-md-0">
-              <div class="text-center mb-4">
-                <i class="bi bi-chat-dots text-primary" style="font-size: 2.5rem;"></i>
-              </div>
-              <h3 class="h5 text-center mb-2">Live Chat</h3>
-              <p class="text-center mb-0">
-                Available Monday-Friday<br />9am-5pm EST
-              </p>
-            </div>
-            <div class="col-md-4">
-              <div class="text-center mb-4">
-                <i class="bi bi-question-circle text-primary" style="font-size: 2.5rem;"></i>
-              </div>
-              <h3 class="h5 text-center mb-2">Help Center</h3>
-              <p class="text-center mb-0">
-                <a href="{% url 'website:faq' %}" class="text-decoration-none">Visit our FAQ</a>
-              </p>
+              <h3 class="h4 fw-bold mb-3">Email Us</h3>
+              <p class="text-muted mb-3">Send us an email and we'll respond within 24 hours.</p>
+              <a href="mailto:support@notely.com" class="btn btn-outline-primary">support@notely.com</a>
             </div>
           </div>
-
-          <hr class="my-5" />
-
-          <h2 class="h3 mb-4">Send us a message</h2>
-
-          <form>
-            <div class="row mb-3">
-              <div class="col-md-6 mb-3 mb-md-0">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="name" placeholder="Your name" />
+        </div>
+        
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="card border-0 shadow-sm rounded-4 h-100">
+            <div class="card-body p-4 text-center">
+              <div class="icon-circle bg-primary bg-opacity-25 p-3 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                <i class="bi bi-chat-dots fs-2 text-white"></i>
               </div>
-              <div class="col-md-6">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Your email" />
+              <h3 class="h4 fw-bold mb-3">Live Chat</h3>
+              <p class="text-muted mb-3">Chat with our friendly support team in real-time.</p>
+              <p class="text-secondary small mb-3">
+                Available Monday-Friday<br />
+                9am-5pm EST
+              </p>
+              <button class="btn btn-outline-primary">Start Chat</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="card border-0 shadow-sm rounded-4 h-100">
+            <div class="card-body p-4 text-center">
+              <div class="icon-circle bg-primary bg-opacity-25 p-3 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                <i class="bi bi-question-circle fs-2 text-white"></i>
               </div>
+              <h3 class="h4 fw-bold mb-3">Help Center</h3>
+              <p class="text-muted mb-3">Browse our knowledge base for quick answers to common questions.</p>
+              <a href="{% url 'website:faq' %}" class="btn btn-outline-primary">Visit Help Center</a>
             </div>
-            <div class="mb-3">
-              <label for="subject" class="form-label">Subject</label>
-              <input type="text" class="form-control" id="subject" placeholder="Message subject" />
-            </div>
-            <div class="mb-4">
-              <label for="message" class="form-label">Message</label>
-              <textarea class="form-control" id="message" rows="5" placeholder="Your message"></textarea>
-            </div>
-            <div class="text-end">
-              <button type="submit" class="btn btn-primary"><i class="bi bi-send me-2"></i>Send Message</button>
-            </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <div class="card border-0 shadow-sm rounded-4 overflow-hidden" data-aos="fade-up">
+            <div class="row g-0">
+              <div class="col-lg-6">
+                <div class="card-body p-4 p-lg-5">
+                  <h2 class="h2 fw-bold mb-4">Send us a message</h2>
+                  <p class="text-muted mb-4">We'd love to hear from you! Fill out the form and we'll get back to you as soon as possible.</p>
+                  
+                  <form method="post" class="needs-validation" novalidate>
+                    {% csrf_token %}
+                    <div class="row mb-3">
+                      <div class="col-md-6 mb-3 mb-md-0">
+                        <label for="{{ contact_form.name.id_for_label }}" class="form-label">Name</label>
+                        {{ contact_form.name }}
+                        <div class="invalid-feedback">
+                          {% if contact_form.name.errors %}
+                            {{ contact_form.name.errors.0 }}
+                          {% else %}
+                            Please provide your name.
+                          {% endif %}
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="{{ contact_form.email.id_for_label }}" class="form-label">Email</label>
+                        {{ contact_form.email }}
+                        <div class="invalid-feedback">
+                          {% if contact_form.email.errors %}
+                            {{ contact_form.email.errors.0 }}
+                          {% else %}
+                            Please provide a valid email.
+                          {% endif %}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="{{ contact_form.subject.id_for_label }}" class="form-label">Subject</label>
+                      {{ contact_form.subject }}
+                      <div class="invalid-feedback">
+                        {% if contact_form.subject.errors %}
+                          {{ contact_form.subject.errors.0 }}
+                        {% else %}
+                          Please provide a subject.
+                        {% endif %}
+                      </div>
+                    </div>
+                    <div class="mb-4">
+                      <label for="{{ contact_form.message.id_for_label }}" class="form-label">Message</label>
+                      {{ contact_form.message }}
+                      <div class="invalid-feedback">
+                        {% if contact_form.message.errors %}
+                          {{ contact_form.message.errors.0 }}
+                        {% else %}
+                          Please enter your message.
+                        {% endif %}
+                      </div>
+                    </div>
+                    <div class="text-end">
+                      <button type="submit" class="btn btn-primary btn-lg px-4 py-2"><i class="bi bi-send me-2"></i>Send Message</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="col-lg-6 d-none d-lg-block">
+                <div class="h-100 d-flex align-items-center bg-primary p-4 p-lg-5 text-white">
+                  <div>
+                    <h3 class="fw-bold mb-4">Connect With Us</h3>
+                    <p class="mb-4">Follow us on social media for the latest updates, tips, and feature announcements.</p>
+                    <div class="d-flex flex-wrap gap-3 mb-5">
+                      <a href="#" class="btn btn-light text-primary btn-lg rounded-circle p-2"><i class="bi bi-twitter-x"></i></a>
+                      <a href="#" class="btn btn-light text-primary btn-lg rounded-circle p-2"><i class="bi bi-facebook"></i></a>
+                      <a href="#" class="btn btn-light text-primary btn-lg rounded-circle p-2"><i class="bi bi-instagram"></i></a>
+                      <a href="#" class="btn btn-light text-primary btn-lg rounded-circle p-2"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                    
+                    <h4 class="h5 fw-bold mb-3">Our Location</h4>
+                    <p class="mb-4">
+                      Notely Headquarters<br>
+                      123 Innovation Drive<br>
+                      San Francisco, CA 94107
+                    </p>
+                    
+                    <h4 class="h5 fw-bold mb-3">Operating Hours</h4>
+                    <p class="mb-0">
+                      Monday - Friday: 9:00 AM - 5:00 PM EST<br>
+                      Saturday - Sunday: Closed
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Form validation script
+    document.addEventListener('DOMContentLoaded', function() {
+      const forms = document.querySelectorAll('.needs-validation');
+      
+      Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          
+          form.classList.add('was-validated');
+        }, false);
+      });
+    });
+  </script>
 {% endblock %}

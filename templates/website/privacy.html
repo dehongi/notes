@@ -1,106 +1,342 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  Privacy Policy
+  Privacy Policy - Notely
 {% endblock %}
 
 {% block content %}
-  <div class="row">
-    <div class="col-lg-8 mx-auto">
-      <div class="card shadow">
-        <div class="card-body p-4 p-lg-5">
-          <h1 class="display-5 mb-4">Privacy Policy</h1>
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <div class="card border-0 shadow-sm rounded-4 overflow-hidden" data-aos="fade-up">
+            <div class="card-header bg-primary text-white p-4">
+              <div class="d-flex align-items-center">
+                <div class="icon-circle bg-white bg-opacity-25 p-3 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                  <i class="bi bi-shield-lock fs-2 text-white"></i>
+                </div>
+                <div>
+                  <h1 class="display-5 fw-bold mb-0">Privacy Policy</h1>
+                </div>
+              </div>
+            </div>
+            <div class="card-body p-4 p-lg-5">
+              <div class="alert alert-light border-0 rounded-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="d-flex">
+                  <div class="flex-shrink-0">
+                    <i class="bi bi-info-circle-fill fs-4 text-primary me-3"></i>
+                  </div>
+                  <div>
+                    <p class="mb-0">
+                      <strong>Last updated:</strong> {% now 'F j, Y' %}
+                    </p>
+                  </div>
+                </div>
+              </div>
 
-          <p class="lead mb-4">We are committed to protecting your privacy and personal data.</p>
+              <p class="lead text-secondary mb-5" data-aos="fade-up" data-aos-delay="200">We are committed to protecting your privacy and personal data. This Privacy Policy explains how we collect, use, and safeguard your information when you use our services.</p>
 
-          <p>
-            Last updated:{% now 'F j, Y' %}
-          </p>
+              <div class="row">
+                <div class="col-lg-3 mb-4 mb-lg-0" data-aos="fade-up" data-aos-delay="300">
+                  <div class="sticky-lg-top pt-lg-4" style="top: 100px;">
+                    <h6 class="fw-bold text-uppercase text-muted mb-3">On this page</h6>
+                    <nav id="privacy-nav" class="nav flex-column">
+                      <a class="nav-link py-2 px-3 rounded-3 mb-2" href="#information-collected">Information Collected</a>
+                      <a class="nav-link py-2 px-3 rounded-3 mb-2" href="#how-we-use">How We Use Information</a>
+                      <a class="nav-link py-2 px-3 rounded-3 mb-2" href="#information-sharing">Information Sharing</a>
+                      <a class="nav-link py-2 px-3 rounded-3 mb-2" href="#public-info">Public Information</a>
+                      <a class="nav-link py-2 px-3 rounded-3 mb-2" href="#data-security">Data Security</a>
+                      <a class="nav-link py-2 px-3 rounded-3 mb-2" href="#data-retention">Data Retention</a>
+                      <a class="nav-link py-2 px-3 rounded-3 mb-2" href="#your-rights">Your Rights</a>
+                      <a class="nav-link py-2 px-3 rounded-3 mb-2" href="#childrens-privacy">Children's Privacy</a>
+                      <a class="nav-link py-2 px-3 rounded-3 mb-2" href="#policy-changes">Policy Changes</a>
+                      <a class="nav-link py-2 px-3 rounded-3 mb-2" href="#contact-us">Contact Us</a>
+                    </nav>
+                  </div>
+                </div>
+                
+                <div class="col-lg-9">
+                  <div id="information-collected" class="mb-5" data-aos="fade-up" data-aos-delay="400">
+                    <div class="d-flex align-items-center mb-4">
+                      <div class="icon-circle bg-primary bg-opacity-25 p-2 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="bi bi-person-circle fs-2 text-white"></i>
+                      </div>
+                      <h2 class="h3 fw-bold mb-0">1. Information We Collect</h2>
+                    </div>
+                    <p>We collect information to provide better services to our users. The types of information we collect include:</p>
+                    <div class="card border-0 shadow-sm rounded-4 mb-3">
+                      <div class="card-body p-4">
+                        <h3 class="h5 fw-bold mb-3"><i class="bi bi-person-circle text-primary me-2"></i>Account Information</h3>
+                        <p class="mb-0">When you register for an account, we collect your email address and name.</p>
+                      </div>
+                    </div>
+                    <div class="card border-0 shadow-sm rounded-4 mb-3">
+                      <div class="card-body p-4">
+                        <h3 class="h5 fw-bold mb-3"><i class="bi bi-person-badge text-primary me-2"></i>Profile Information</h3>
+                        <p class="mb-0">Information you provide in your profile, such as a bio or profile picture.</p>
+                      </div>
+                    </div>
+                    <div class="card border-0 shadow-sm rounded-4 mb-3">
+                      <div class="card-body p-4">
+                        <h3 class="h5 fw-bold mb-3"><i class="bi bi-file-earmark-text fs-2 text-primary me-2"></i>Content Data</h3>
+                        <p class="mb-0">The notes and other content you create and store in Notely.</p>
+                      </div>
+                    </div>
+                    <div class="card border-0 shadow-sm rounded-4 mb-3">
+                      <div class="card-body p-4">
+                        <h3 class="h5 fw-bold mb-3"><i class="bi bi-cookie fs-2 text-primary me-2"></i>Usage Data</h3>
+                        <p class="mb-0">Information about how you use our service, such as when you access the service and what features you use.</p>
+                      </div>
+                    </div>
+                    <div class="card border-0 shadow-sm rounded-4">
+                      <div class="card-body p-4">
+                        <h3 class="h5 fw-bold mb-3"><i class="bi bi-laptop fs-2 text-primary me-2"></i>Device Information</h3>
+                        <p class="mb-0">Information about the device you use to access our service, including hardware model, operating system, and browser type.</p>
+                      </div>
+                    </div>
+                  </div>
 
-          <h2 class="h4 mt-5 mb-3">1. Information We Collect</h2>
-          <p>We collect information to provide better services to our users. The types of information we collect include:</p>
-          <ul>
-            <li>
-              <strong>Account Information:</strong> When you register for an account, we collect your email address and name.
-            </li>
-            <li>
-              <strong>Profile Information:</strong> Information you provide in your profile, such as a bio or profile picture.
-            </li>
-            <li>
-              <strong>Content Data:</strong> The notes and other content you create and store in Notes App.
-            </li>
-            <li>
-              <strong>Usage Data:</strong> Information about how you use our service, such as when you access the service and what features you use.
-            </li>
-            <li>
-              <strong>Device Information:</strong> Information about the device you use to access our service, including hardware model, operating system, and browser type.
-            </li>
-          </ul>
+                  <div id="how-we-use" class="mb-5" data-aos="fade-up">
+                    <div class="d-flex align-items-center mb-4">
+                      <div class="icon-circle bg-primary bg-opacity-25 p-2 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="bi bi-gear fs-2 text-white"></i>
+                      </div>
+                      <h2 class="h3 fw-bold mb-0">2. How We Use Your Information</h2>
+                    </div>
+                    <p>We use the information we collect to:</p>
+                    <ul class="list-group list-group-flush rounded-4 shadow-sm mb-4">
+                      <li class="list-group-item py-3 border-0"><i class="bi bi-check-circle-fill text-primary me-2"></i> Provide, maintain, and improve our services</li>
+                      <li class="list-group-item py-3 bg-light border-0"><i class="bi bi-check-circle-fill text-primary me-2"></i> Create and maintain your account</li>
+                      <li class="list-group-item py-3 border-0"><i class="bi bi-check-circle-fill text-primary me-2"></i> Process and complete transactions</li>
+                      <li class="list-group-item py-3 bg-light border-0"><i class="bi bi-check-circle-fill text-primary me-2"></i> Send technical notices and support messages</li>
+                      <li class="list-group-item py-3 border-0"><i class="bi bi-check-circle-fill text-primary me-2"></i> Respond to your comments and questions</li>
+                      <li class="list-group-item py-3 bg-light border-0"><i class="bi bi-check-circle-fill text-primary me-2"></i> Understand and analyze how you use our service</li>
+                      <li class="list-group-item py-3 border-0"><i class="bi bi-check-circle-fill text-primary me-2"></i> Monitor and analyze trends, usage, and activities</li>
+                      <li class="list-group-item py-3 bg-light border-0"><i class="bi bi-check-circle-fill text-primary me-2"></i> Detect, prevent, and address technical issues</li>
+                    </ul>
+                  </div>
 
-          <h2 class="h4 mt-5 mb-3">2. How We Use Your Information</h2>
-          <p>We use the information we collect to:</p>
-          <ul>
-            <li>Provide, maintain, and improve our services</li>
-            <li>Create and maintain your account</li>
-            <li>Process and complete transactions</li>
-            <li>Send technical notices and support messages</li>
-            <li>Respond to your comments and questions</li>
-            <li>Understand and analyze how you use our service</li>
-            <li>Monitor and analyze trends, usage, and activities in connection with our service</li>
-            <li>Detect, prevent, and address technical issues</li>
-          </ul>
+                  <div id="information-sharing" class="mb-5" data-aos="fade-up">
+                    <div class="d-flex align-items-center mb-4">
+                      <div class="icon-circle bg-primary bg-opacity-25 p-2 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="bi bi-share fs-2 text-white"></i>
+                      </div>
+                      <h2 class="h3 fw-bold mb-0">3. How We Share Your Information</h2>
+                    </div>
+                    <p>We do not share your personal information with companies, organizations, or individuals outside of Notely except in the following cases:</p>
+                    <div class="accordion shadow-sm rounded-4 overflow-hidden mb-4">
+                      <div class="accordion-item border-0">
+                        <h2 class="accordion-header">
+                          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#consent-collapse">
+                            <strong>With your consent</strong>
+                          </button>
+                        </h2>
+                        <div id="consent-collapse" class="accordion-collapse collapse show">
+                          <div class="accordion-body bg-light">
+                            <p class="mb-0">We will share personal information when you have given us your consent to do so.</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="accordion-item border-0">
+                        <h2 class="accordion-header">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#legal-collapse">
+                            <strong>For legal reasons</strong>
+                          </button>
+                        </h2>
+                        <div id="legal-collapse" class="accordion-collapse collapse">
+                          <div class="accordion-body bg-light">
+                            <p class="mb-0">We will share personal information if we have a good-faith belief that access, use, preservation, or disclosure of the information is reasonably necessary to meet any applicable law, regulation, legal process, or enforceable governmental request.</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="accordion-item border-0">
+                        <h2 class="accordion-header">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#policies-collapse">
+                            <strong>To enforce our policies</strong>
+                          </button>
+                        </h2>
+                        <div id="policies-collapse" class="accordion-collapse collapse">
+                          <div class="accordion-body bg-light">
+                            <p class="mb-0">We may share information to protect against harm to the rights, property, or safety of Notely, our users, or the public as required or permitted by law.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-          <h2 class="h4 mt-5 mb-3">3. How We Share Your Information</h2>
-          <p>We do not share your personal information with companies, organizations, or individuals outside of Notes App except in the following cases:</p>
-          <ul>
-            <li>
-              <strong>With your consent:</strong> We will share personal information when you have given us your consent to do so.
-            </li>
-            <li>
-              <strong>For legal reasons:</strong> We will share personal information if we have a good-faith belief that access, use, preservation, or disclosure of the information is reasonably necessary to meet any applicable law, regulation, legal process, or enforceable governmental request.
-            </li>
-            <li>
-              <strong>To enforce our policies:</strong> We may share information to protect against harm to the rights, property, or safety of Notes App, our users, or the public as required or permitted by law.
-            </li>
-          </ul>
+                  <div id="public-info" class="mb-5" data-aos="fade-up">
+                    <div class="d-flex align-items-center mb-4">
+                      <div class="icon-circle bg-primary bg-opacity-25 p-2 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="bi bi-globe fs-2 text-white"></i>
+                      </div>
+                      <h2 class="h3 fw-bold mb-0">4. Public Information</h2>
+                    </div>
+                    <div class="alert alert-warning border-0 rounded-4">
+                      <div class="d-flex">
+                        <div class="flex-shrink-0">
+                          <i class="bi bi-exclamation-triangle-fill fs-4 me-3"></i>
+                        </div>
+                        <div>
+                          <p class="mb-0">When you make a note public, that content may be viewed by anyone, including people who don't have an account with Notely. Please be careful about what information you choose to make public.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-          <h2 class="h4 mt-5 mb-3">4. Public Information</h2>
-          <p>When you make a note public, that content may be viewed by anyone, including people who don't have an account with Notes App. Please be careful about what information you choose to make public.</p>
+                  <div id="data-security" class="mb-5" data-aos="fade-up">
+                    <div class="d-flex align-items-center mb-4">
+                      <div class="icon-circle bg-primary bg-opacity-25 p-2 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="bi bi-shield-check fs-2 text-white"></i>
+                      </div>
+                      <h2 class="h3 fw-bold mb-0">5. Data Security</h2>
+                    </div>
+                    <p>We implement appropriate technical and organizational measures to protect your personal information against unauthorized or unlawful processing, accidental loss, destruction, or damage. However, no method of transmission over the Internet or method of electronic storage is 100% secure.</p>
+                  </div>
 
-          <h2 class="h4 mt-5 mb-3">5. Data Security</h2>
-          <p>We implement appropriate technical and organizational measures to protect your personal information against unauthorized or unlawful processing, accidental loss, destruction, or damage. However, no method of transmission over the Internet or method of electronic storage is 100% secure.</p>
+                  <div id="data-retention" class="mb-5" data-aos="fade-up">
+                    <div class="d-flex align-items-center mb-4">
+                      <div class="icon-circle bg-primary bg-opacity-25 p-2 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="bi bi-clock-history fs-2 text-white"></i>
+                      </div>
+                      <h2 class="h3 fw-bold mb-0">6. Data Retention</h2>
+                    </div>
+                    <p>We retain your personal information for as long as necessary to fulfill the purposes for which we collected it, including for the purposes of satisfying any legal, accounting, or reporting requirements.</p>
+                  </div>
 
-          <h2 class="h4 mt-5 mb-3">6. Data Retention</h2>
-          <p>We retain your personal information for as long as necessary to fulfill the purposes for which we collected it, including for the purposes of satisfying any legal, accounting, or reporting requirements.</p>
+                  <div id="your-rights" class="mb-5" data-aos="fade-up">
+                    <div class="d-flex align-items-center mb-4">
+                      <div class="icon-circle bg-primary bg-opacity-25 p-2 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="bi bi-person-check fs-2 text-white"></i>
+                      </div>
+                      <h2 class="h3 fw-bold mb-0">7. Your Rights</h2>
+                    </div>
+                    <p>Depending on your location, you may have the following rights regarding your personal information:</p>
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <div class="card border-0 shadow-sm rounded-4 h-100">
+                          <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-3">
+                              <div class="icon-circle bg-primary bg-opacity-25 p-1 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
+                                <i class="bi bi-eye fs-6 text-white"></i>
+                              </div>
+                              <h4 class="h6 fw-bold mb-0">Right to Access</h4>
+                            </div>
+                            <p class="small mb-0">The right to access the personal information we hold about you</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="card border-0 shadow-sm rounded-4 h-100">
+                          <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-3">
+                              <div class="icon-circle bg-primary bg-opacity-25 p-1 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
+                                <i class="bi bi-pencil fs-6 text-white"></i>
+                              </div>
+                              <h4 class="h6 fw-bold mb-0">Right to Correction</h4>
+                            </div>
+                            <p class="small mb-0">The right to request correction of inaccurate personal information</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="card border-0 shadow-sm rounded-4 h-100">
+                          <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-3">
+                              <div class="icon-circle bg-primary bg-opacity-25 p-1 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
+                                <i class="bi bi-trash fs-6 text-white"></i>
+                              </div>
+                              <h4 class="h6 fw-bold mb-0">Right to Deletion</h4>
+                            </div>
+                            <p class="small mb-0">The right to request deletion of your personal information</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="card border-0 shadow-sm rounded-4 h-100">
+                          <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-3">
+                              <div class="icon-circle bg-primary bg-opacity-25 p-1 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
+                                <i class="bi bi-hand-index-thumb fs-6 text-white"></i>
+                              </div>
+                              <h4 class="h6 fw-bold mb-0">Right to Object</h4>
+                            </div>
+                            <p class="small mb-0">The right to object to processing of your personal information</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-          <h2 class="h4 mt-5 mb-3">7. Your Rights</h2>
-          <p>Depending on your location, you may have the following rights regarding your personal information:</p>
-          <ul>
-            <li>The right to access the personal information we hold about you</li>
-            <li>The right to request correction of inaccurate personal information</li>
-            <li>The right to request deletion of your personal information</li>
-            <li>The right to object to processing of your personal information</li>
-            <li>The right to request restriction of processing your personal information</li>
-            <li>The right to request transfer of your personal information</li>
-          </ul>
+                  <div id="childrens-privacy" class="mb-5" data-aos="fade-up">
+                    <div class="d-flex align-items-center mb-4">
+                      <div class="icon-circle bg-primary bg-opacity-25 p-2 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="bi bi-emoji-smile fs-2 text-white"></i>
+                      </div>
+                      <h2 class="h3 fw-bold mb-0">8. Children's Privacy</h2>
+                    </div>
+                    <p>Our service is not directed to children under the age of 13, and we do not knowingly collect personal information from children under 13. If we learn that we have collected personal information of a child under 13, we will take steps to delete such information as soon as possible.</p>
+                  </div>
 
-          <h2 class="h4 mt-5 mb-3">8. Children's Privacy</h2>
-          <p>Our service is not directed to children under the age of 13, and we do not knowingly collect personal information from children under 13. If we learn that we have collected personal information of a child under 13, we will take steps to delete such information as soon as possible.</p>
+                  <div id="policy-changes" class="mb-5" data-aos="fade-up">
+                    <div class="d-flex align-items-center mb-4">
+                      <div class="icon-circle bg-primary bg-opacity-25 p-2 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="bi bi-arrow-clockwise fs-2 text-white"></i>
+                      </div>
+                      <h2 class="h3 fw-bold mb-0">9. Changes to This Privacy Policy</h2>
+                    </div>
+                    <p>We may update our Privacy Policy from time to time. We will notify you of significant changes by posting a notice on our website or sending an email to the address associated with your account.</p>
+                  </div>
 
-          <h2 class="h4 mt-5 mb-3">9. Changes to This Privacy Policy</h2>
-          <p>We may update our Privacy Policy from time to time. We will notify you of significant changes by posting a notice on our website or sending an email to the address associated with your account.</p>
-
-          <h2 class="h4 mt-5 mb-3">10. Contact Us</h2>
-          <p>If you have any questions about this Privacy Policy, please contact us at:</p>
-          <p>
-            <a href="mailto:privacy@notesapp.com">privacy@notesapp.com</a>
-          </p>
-
-          <div class="mt-5 text-center">
-            <a href="{% url 'website:contact' %}" class="btn btn-primary"><i class="bi bi-envelope me-2"></i>Contact Us</a>
+                  <div id="contact-us" class="mb-5" data-aos="fade-up">
+                    <div class="d-flex align-items-center mb-4">
+                      <div class="icon-circle bg-primary bg-opacity-25 p-2 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="bi bi-envelope fs-2 text-white"></i>
+                      </div>
+                      <h2 class="h3 fw-bold mb-0">10. Contact Us</h2>
+                    </div>
+                    <p>If you have any questions about this Privacy Policy, please contact us at:</p>
+                    <div class="d-grid gap-2 d-md-flex">
+                      <a href="mailto:privacy@notely.com" class="btn btn-primary px-4 py-2"><i class="bi bi-envelope me-2"></i>privacy@notely.com</a>
+                      <a href="{% url 'website:contact' %}" class="btn btn-outline-primary px-4 py-2"><i class="bi bi-chat-dots me-2"></i>Contact Us</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <script>
+    // Highlight active section in navigation
+    document.addEventListener('DOMContentLoaded', function() {
+      const sections = document.querySelectorAll('div[id]');
+      const navLinks = document.querySelectorAll('#privacy-nav .nav-link');
+      
+      function highlightNavLink() {
+        let scrollPosition = window.scrollY;
+        
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 100;
+          const sectionBottom = sectionTop + section.offsetHeight;
+          const sectionId = section.getAttribute('id');
+          
+          if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+            navLinks.forEach(link => {
+              link.classList.remove('active', 'bg-primary', 'text-white');
+              
+              if (link.getAttribute('href') === '#' + sectionId) {
+                link.classList.add('active', 'bg-primary', 'text-white');
+              }
+            });
+          }
+        });
+      }
+      
+      window.addEventListener('scroll', highlightNavLink);
+      highlightNavLink(); // Run once on load
+    });
+  </script>
 {% endblock %}

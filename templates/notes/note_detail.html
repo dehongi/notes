@@ -1,46 +1,92 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  {{ note.title }}
+  {{ note.title }} | Notely
 {% endblock %}
 
 {% block content %}
-  <div class="row">
-    <div class="col-lg-8 mx-auto">
-      <div class="card shadow">
-        {% if note.is_public %}
-          <div class="card-header bg-success bg-opacity-10 text-success py-2">
-            <i class="bi bi-globe me-1"></i> This note is publicly visible
-          </div>
-        {% endif %}
-        <div class="card-body">
-          <h1 class="card-title mb-3">{{ note.title }}</h1>
-          <p class="text-muted mb-3">
-            <i class="bi bi-calendar"></i> {{ note.created_at|date:'F d, Y' }} &bull;
-            <i class="bi bi-clock"></i> {{ note.created_at|time:'g:i A' }} &bull;{% if note.updated_at != note.created_at %}
-              <span class="ms-2"><i class="bi bi-pencil"></i> Updated: {{ note.updated_at|date:'F d, Y' }} at {{ note.updated_at|time:'g:i A' }}</span>
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <div class="card border-0 shadow-sm rounded-4 overflow-hidden" data-aos="fade-up">
+            {% if note.is_public %}
+              <div class="card-status-top bg-success"></div>
+            {% else %}
+              <div class="card-status-top bg-secondary"></div>
             {% endif %}
-          </p>
-          <hr />
-          <div class="note-content mb-4">
-            <p>{{ note.content|linebreaks }}</p>
+            <div class="card-body p-4 p-lg-5">
+              <div class="d-flex justify-content-between align-items-start mb-4">
+                <h1 class="h2 fw-bold mb-0">{{ note.title }}</h1>
+                {% if note.is_public %}
+                  <span class="badge bg-success bg-opacity-10 text-success px-3 py-2 rounded-pill">
+                    <i class="bi bi-globe-americas me-1"></i> Public Note
+                  </span>
+                {% else %}
+                  <span class="badge bg-secondary bg-opacity-10 text-secondary px-3 py-2 rounded-pill">
+                    <i class="bi bi-lock me-1"></i> Private Note
+                  </span>
+                {% endif %}
+              </div>
+              
+              <div class="d-flex align-items-center text-muted mb-4" data-aos="fade-up" data-aos-delay="100">
+                <span class="me-3"><i class="bi bi-calendar3 me-2"></i>{{ note.created_at|date:'F d, Y' }}</span>
+                <span class="me-3"><i class="bi bi-clock me-2"></i>{{ note.created_at|time:'g:i A' }}</span>
+                {% if note.updated_at != note.created_at %}
+                  <span class="badge bg-light text-muted border"><i class="bi bi-pencil me-2"></i>Updated: {{ note.updated_at|date:'F d, Y' }} at {{ note.updated_at|time:'g:i A' }}</span>
+                {% endif %}
+              </div>
+              
+              <div class="note-content p-4 p-lg-5 bg-light bg-opacity-50 rounded-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                {{ note.content|linebreaks }}
+              </div>
+              
+              <div class="d-flex justify-content-between align-items-center flex-wrap gap-3" data-aos="fade-up" data-aos-delay="300">
+                <a href="{% url 'notes:note_list' %}" class="btn btn-outline-primary">
+                  <i class="bi bi-arrow-left me-2"></i>Back to My Notes
+                </a>
+                <div class="d-flex gap-2">
+                  <a href="{% url 'notes:note_update' note.pk %}" class="btn btn-primary">
+                    <i class="bi bi-pencil me-2"></i>Edit
+                  </a>
+                  <a href="{% url 'notes:note_delete' note.pk %}" class="btn btn-outline-danger">
+                    <i class="bi bi-trash me-2"></i>Delete
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="card-footer bg-white d-flex justify-content-between">
-          <a href="{% url 'notes:note_list' %}" class="btn btn-outline-primary"><i class="bi bi-arrow-left"></i> Back to My Notes</a>
-          <div>
-            <a href="{% url 'notes:note_update' note.pk %}" class="btn btn-outline-secondary"><i class="bi bi-pencil"></i> Edit</a>
-            <a href="{% url 'notes:note_delete' note.pk %}" class="btn btn-outline-danger ms-2"><i class="bi bi-trash"></i> Delete</a>
-          </div>
-        </div>
-      </div>
 
-      <!-- Comments Section -->
-      <div class="card shadow mt-4">
-        <div class="card-body">
-          {% include 'notes/comments.html' %}
+          <!-- Comments Section -->
+          <div class="card border-0 shadow-sm rounded-4 mt-4" data-aos="fade-up" data-aos-delay="400">
+            <div class="card-body p-4 p-lg-5">
+              {% include 'notes/comments.html' %}
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+    
+    <!-- Background animations -->
+    <div class="position-absolute" style="width: 300px; height: 300px; background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); filter: blur(150px); opacity: 0.1; bottom: -100px; right: -100px; border-radius: 50%; z-index: -1;"></div>
+  </section>
+  
+  <style>
+    .card-status-top {
+      height: 3px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      border-radius: 0.75rem 0.75rem 0 0;
+    }
+    .note-content {
+      font-family: var(--body-font);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+    .note-content p:last-child {
+      margin-bottom: 0;
+    }
+  </style>
 {% endblock %}

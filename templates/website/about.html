@@ -1,78 +1,176 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  About Us
+  About Notely - Our Story
 {% endblock %}
 
 {% block content %}
-  <div class="row">
-    <div class="col-lg-8 mx-auto">
-      <div class="card shadow">
-        <div class="card-body p-4 p-lg-5">
-          <h1 class="display-5 mb-4">About Notes App</h1>
-
-          <p class="lead mb-4">Our mission is to help you organize your thoughts, ideas, and information in the most efficient way possible.</p>
-
-          <h2 class="h4 mt-5 mb-3">Our Story</h2>
-          <p>Notes App was founded in 2023 with a simple goal: to create a clean, intuitive note-taking application that helps people organize their thoughts without getting in the way. We believe that the best tools are those that feel invisible, letting you focus on what matters most—your ideas.</p>
-          <p>Whether you're a student, professional, or just someone who likes to keep track of ideas, our platform provides a seamless experience for capturing and organizing your thoughts across all your devices.</p>
-
-          <h2 class="h4 mt-5 mb-3">Key Features</h2>
-          <div class="row">
-            <div class="col-md-6 mb-4">
-              <div class="d-flex">
-                <div class="flex-shrink-0">
-                  <i class="bi bi-shield-lock text-primary fs-3 me-3"></i>
-                </div>
-                <div>
-                  <h3 class="h5">Privacy Control</h3>
-                  <p>Keep your notes private or make them public to share with others.</p>
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+            <div class="row g-0">
+              <div class="col-md-5 d-none d-md-block">
+                <img src="https://images.unsplash.com/photo-1516382799247-87df95d790b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="img-fluid h-100" style="object-fit: cover;" alt="Team working">
+              </div>
+              <div class="col-md-7">
+                <div class="card-body p-4 p-lg-5">
+                  <h1 class="display-5 fw-bold mb-4" data-aos="fade-up">About Notely</h1>
+                  <p class="lead mb-4 text-secondary" data-aos="fade-up" data-aos-delay="100">Our mission is to help you capture and organize your thoughts, ideas, and information in the most intuitive way possible.</p>
                 </div>
               </div>
             </div>
-            <div class="col-md-6 mb-4">
-              <div class="d-flex">
-                <div class="flex-shrink-0">
-                  <i class="bi bi-cloud text-primary fs-3 me-3"></i>
-                </div>
-                <div>
-                  <h3 class="h5">Cloud Sync</h3>
-                  <p>Access your notes from any device with internet connection.</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 mb-4">
-              <div class="d-flex">
-                <div class="flex-shrink-0">
-                  <i class="bi bi-lightning-charge text-primary fs-3 me-3"></i>
-                </div>
-                <div>
-                  <h3 class="h5">Fast Performance</h3>
-                  <p>Quick load times and smooth interactions for the best experience.</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 mb-4">
-              <div class="d-flex">
-                <div class="flex-shrink-0">
-                  <i class="bi bi-laptop text-primary fs-3 me-3"></i>
-                </div>
-                <div>
-                  <h3 class="h5">Responsive Design</h3>
-                  <p>Works perfectly on all devices from smartphones to desktops.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <h2 class="h4 mt-5 mb-3">Our Team</h2>
-          <p>Notes App was created by a small team of passionate developers and designers who believe in the power of simple, effective tools. We're constantly working to improve the app based on user feedback and emerging technologies.</p>
-
-          <div class="mt-5 text-center">
-            <a href="{% url 'website:contact' %}" class="btn btn-primary btn-lg"><i class="bi bi-envelope me-2"></i>Get in Touch</a>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <div class="card border-0 shadow-sm rounded-4 mb-5" data-aos="fade-up">
+            <div class="card-body p-4 p-lg-5">
+              <h2 class="h2 fw-bold mb-4">Our Story</h2>
+              <div class="row">
+                <div class="col-lg-8">
+                  <p class="mb-4">Notely was founded in 2023 with a simple but powerful vision: to create a clean, intuitive note-taking application that helps people organize their thoughts without getting in the way.</p>
+                  <p class="mb-4">We believe that the best tools are those that feel invisible, letting you focus on what matters most—your ideas. Our team of passionate designers and developers work tirelessly to create an experience that's both beautiful and functional.</p>
+                  <p>Whether you're a student capturing lecture notes, a professional organizing project ideas, or someone who likes to journal thoughts and memories, our platform provides a seamless experience across all your devices.</p>
+                </div>
+                <div class="col-lg-4">
+                  <div class="position-relative" data-aos="fade-left" data-aos-delay="200">
+                    <div class="bg-primary rounded-4 opacity-10 position-absolute" style="width: 90%; height: 90%; top: 15px; left: 15px; z-index: 0;"></div>
+                    <img src="https://images.unsplash.com/photo-1542435503-956c469947f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Writing notes" class="img-fluid rounded-4 shadow-sm position-relative" style="z-index: 1;">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card border-0 shadow-sm rounded-4 mb-5" data-aos="fade-up">
+            <div class="card-body p-4 p-lg-5">
+              <h2 class="h2 fw-bold mb-4">Our Values</h2>
+              <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                  <div class="text-center p-4">
+                    <div class="icon-circle bg-primary bg-opacity-25 p-3 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                      <i class="bi bi-lightbulb fs-2 text-white"></i>
+                    </div>
+                    <h3 class="h4 mb-3">Simplicity</h3>
+                    <p class="text-muted">We believe in removing complexity, not adding features for the sake of it.</p>
+                  </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                  <div class="text-center p-4">
+                    <div class="icon-circle bg-primary bg-opacity-25 p-3 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                      <i class="bi bi-shield-check fs-2 text-white"></i>
+                    </div>
+                    <h3 class="h4 mb-3">Privacy</h3>
+                    <p class="text-muted">Your thoughts are yours. We respect your privacy and protect your data.</p>
+                  </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                  <div class="text-center p-4">
+                    <div class="icon-circle bg-primary bg-opacity-25 p-3 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                      <i class="bi bi-people fs-2 text-white"></i>
+                    </div>
+                    <h3 class="h4 mb-3">Community</h3>
+                    <p class="text-muted">We build features based on feedback from our diverse community of users.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card border-0 shadow-sm rounded-4" data-aos="fade-up">
+            <div class="card-body p-4 p-lg-5">
+              <h2 class="h2 fw-bold mb-4">Key Features</h2>
+              <div class="row g-4">
+                <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                  <div class="d-flex">
+                    <div class="flex-shrink-0">
+                      <div class="icon-circle bg-primary bg-opacity-25 p-3 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="bi bi-shield-lock fs-2 text-white"></i>
+                      </div>
+                    </div>
+                    <div class="ms-4">
+                      <h3 class="h5 fw-bold">Privacy Control</h3>
+                      <p class="text-muted">Keep your notes private or make them public to share with others. You're always in control.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                  <div class="d-flex">
+                    <div class="flex-shrink-0">
+                      <div class="icon-circle bg-primary bg-opacity-25 p-3 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="bi bi-cloud fs-2 text-white"></i>
+                      </div>
+                    </div>
+                    <div class="ms-4">
+                      <h3 class="h5 fw-bold">Cloud Sync</h3>
+                      <p class="text-muted">Access your notes from any device with internet connection. Your data is always up-to-date.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                  <div class="d-flex">
+                    <div class="flex-shrink-0">
+                      <div class="icon-circle bg-primary bg-opacity-25 p-3 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="bi bi-lightning-charge fs-2 text-white"></i>
+                      </div>
+                    </div>
+                    <div class="ms-4">
+                      <h3 class="h5 fw-bold">Fast Performance</h3>
+                      <p class="text-muted">Experience quick load times and smooth interactions for the best note-taking experience.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                  <div class="d-flex">
+                    <div class="flex-shrink-0">
+                      <div class="icon-circle bg-primary bg-opacity-25 p-3 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="bi bi-laptop fs-2 text-white"></i>
+                      </div>
+                    </div>
+                    <div class="ms-4">
+                      <h3 class="h5 fw-bold">Responsive Design</h3>
+                      <p class="text-muted">Works perfectly on all devices from smartphones to desktops, with a consistent experience.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <div class="card border-0 shadow-sm rounded-4 bg-primary text-white overflow-hidden" data-aos="fade-up">
+            <div class="card-body p-0">
+              <div class="row g-0">
+                <div class="col-md-8 p-4 p-lg-5">
+                  <h2 class="h2 fw-bold mb-4">Meet the Team</h2>
+                  <p class="mb-4">Notely was created by a small team of passionate developers and designers who believe in the power of simple, effective tools. We're constantly working to improve the app based on user feedback and emerging technologies.</p>
+                  <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <a href="{% url 'website:contact' %}" class="btn btn-light text-primary px-4 py-2"><i class="bi bi-envelope me-2"></i>Get in Touch</a>
+                  </div>
+                </div>
+                <div class="col-md-4 d-none d-md-block">
+                  <div class="h-100" style="background: url('https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 {% endblock %}

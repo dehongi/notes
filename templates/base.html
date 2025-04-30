@@ -146,7 +146,7 @@
                 <a class="nav-link" href="{% url 'notes:note_list' %}"><i class="bi bi-journal me-1"></i>My Notes</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link btn btn-light text-primary me-2 py-1 px-3" href="{% url 'notes:note_create' %}"><i class="bi bi-plus-circle me-1"></i>New Note</a>
+                <a class="btn btn-light text-primary me-2 py-1 px-3" href="{% url 'notes:note_create' %}"><i class="bi bi-plus-circle me-1"></i>New Note</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -178,7 +178,7 @@
                 <a class="nav-link" href="{% url 'accounts:login' %}"><i class="bi bi-box-arrow-in-right me-1"></i>Log In</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link btn btn-light text-primary ms-2 py-1 px-3" href="{% url 'accounts:signup' %}"><i class="bi bi-person-plus me-1"></i>Sign Up</a>
+                <a class="btn btn-light text-primary ms-2 py-1 px-3" href="{% url 'accounts:signup' %}"><i class="bi bi-person-plus me-1"></i>Sign Up</a>
               </li>
             {% endif %}
           </ul>
@@ -190,7 +190,7 @@
     {% if messages %}
       <div class="container mt-4">
         {% for message in messages %}
-          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|multiply:100 }}">
+          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:1|add:"00" }}">
             {{ message }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
@@ -239,11 +239,17 @@
           <div class="col-lg-4 col-md-6">
             <h5 class="mb-3">Newsletter</h5>
             <p class="text-muted">Subscribe to our newsletter for tips and updates</p>
-            <form class="mt-3">
+            <form method="post" action="{% url 'website:newsletter_subscribe' %}" class="mt-3">
+              {% csrf_token %}
               <div class="input-group">
-                <input type="email" class="form-control" placeholder="Your email">
-                <button class="btn btn-primary" type="button">Subscribe</button>
+                {% if newsletter_form %}
+                  {{ newsletter_form.email }}
+                {% else %}
+                  <input type="email" name="email" class="form-control" placeholder="Your email" required>
+                {% endif %}
+                <button class="btn btn-primary" type="submit" name="newsletter_submit">Subscribe</button>
               </div>
+              <small class="form-text text-muted mt-2">We respect your privacy and will never share your information.</small>
             </form>
           </div>
         </div>
@@ -251,7 +257,7 @@
         <div class="row">
           <div class="col-md-6 text-center text-md-start">
             <p class="mb-0">
-              &copy;{% now 'Y' %} Notely. All rights reserved. Developed by <a href="https://bastakiss.com" target="_blank" class="text-decoration-none">Bastaki</a>
+              &copy;{% now 'Y' %} Notely. All rights reserved. Developed by <a href="https://bastaki.co" target="_blank" class="text-decoration-none">Bastaki</a>
             </p>
           </div>
           <div class="col-md-6 text-center text-md-end">
