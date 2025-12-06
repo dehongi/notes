@@ -1,98 +1,175 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  Public Notes
+  Public Notes | Notely
 {% endblock %}
 
 {% block content %}
-  <div class="row mb-4">
-    <div class="col-12">
-      <h1 class="display-5 mb-3">Public Notes</h1>
-      <p class="lead">Browse through the collection of publicly shared notes.</p>
-    </div>
-  </div>
+  <section class="py-5">
+    <div class="container">
+      <div class="row mb-4">
+        <div class="col-lg-10 mx-auto" data-aos="fade-up">
+          <h1 class="display-5 fw-bold mb-2">Community Notes</h1>
+          <p class="lead text-muted">Discover ideas and inspiration from the Notely community</p>
+          
+          <div class="mb-4 mt-4" data-aos="fade-up" data-aos-delay="100">
+            <form method="get" action="{% url 'notes:public_note_list' %}">
+              <div class="input-group input-group-lg shadow-sm rounded-4 overflow-hidden">
+                <span class="input-group-text bg-light border-end-0"><i class="bi bi-search"></i></span>
+                <input type="text" class="form-control border-start-0" id="noteSearch" name="q" placeholder="Search public notes..." value="{{ search_query }}">
+                <button type="submit" class="btn btn-primary">Search</button>
+                {% if search_query %}
+                  <a href="{% url 'notes:public_note_list' %}" class="btn btn-outline-secondary"><i class="bi bi-x-circle me-1"></i>Clear</a>
+                {% endif %}
+              </div>
+            </form>
+          </div>
+          
+          {% if search_query %}
+            <div class="alert alert-light bg-light bg-opacity-50 rounded-4 mb-4" data-aos="fade-up" data-aos-delay="150">
+              <p class="mb-0">
+                <i class="bi bi-info-circle me-2"></i>Showing results for: <strong>{{ search_query }}</strong>
+                {% if page_obj.paginator.count == 0 %}
+                  <span class="text-danger">- No notes found</span>
+                {% else %}
+                  <span class="text-success">- {{ page_obj.paginator.count }} note{% if page_obj.paginator.count != 1 %}s{% endif %} found</span>
+                {% endif %}
+              </p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
 
-  {% if notes %}
-    <div class="row">
-      {% for note in notes %}
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card h-100 shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title">{{ note.title }}</h5>
+      {% if notes %}
+        <div class="row g-4">
+          {% for note in notes %}
+            <div class="col-md-6 col-lg-4 public-note-card" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:1|add:"00" }}" data-note-title="{{ note.title|lower }}" data-note-content="{{ note.content|lower }}">
+              <div class="card h-100 border-0 shadow-sm rounded-4">
+                <div class="card-status-top bg-success"></div>
+                <div class="card-body p-4">
+                  <h3 class="h5 card-title fw-bold mb-3">{{ note.title }}</h3>
 
-              <div class="d-flex align-items-center mb-3">
-                <div class="flex-shrink-0">
-                  {% if note.user.profile_picture %}
-                    <img src="{{ note.user.profile_picture.url }}" alt="{{ note.user.get_full_name }}" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover;" />
-                  {% else %}
-                    <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; font-size: 1rem;">{{ note.user.first_name|slice:':1'|upper }}</div>
-                  {% endif %}
-                </div>
-                <div class="flex-grow-1 ms-2">
-                  <p class="mb-0">
-                    <a href="{% url 'accounts:public_profile' note.user.slug %}" class="text-decoration-none fw-bold">{{ note.user.get_full_name }}</a>
-                    {% if user.is_authenticated and user != note.user %}
-                      {% if note.user.id in following_ids %}
-                        <a href="{% url 'accounts:unfollow' note.user.slug %}" class="btn btn-sm btn-outline-primary ms-2" title="Unfollow"><i class="bi bi-person-dash"></i></a>
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="flex-shrink-0">
+                      {% if note.user.profile_picture %}
+                        <img src="{{ note.user.profile_picture.url }}" alt="{{ note.user.get_full_name }}" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover;" />
                       {% else %}
-                        <a href="{% url 'accounts:follow' note.user.slug %}" class="btn btn-sm btn-primary ms-2" title="Follow"><i class="bi bi-person-plus"></i></a>
+                        <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; font-size: 1rem;">{{ note.user.first_name|slice:':1'|upper }}</div>
                       {% endif %}
-                    {% endif %}
-                  </p>
-                  <p class="text-muted small mb-0">
-                    <i class="bi bi-calendar"></i> {{ note.updated_at|date:'M d, Y' }}
-                  </p>
+                    </div>
+                    <div class="flex-grow-1 ms-2">
+                      <p class="mb-0 fw-medium">
+                        <a href="{% url 'accounts:public_profile' note.user.slug %}" class="text-decoration-none">{{ note.user.get_full_name }}</a>
+                        {% if user.is_authenticated and user != note.user %}
+                          {% if note.user.id in following_ids %}
+                            <a href="{% url 'accounts:unfollow' note.user.slug %}" class="btn btn-sm btn-outline-primary rounded-pill ms-2" title="Unfollow"><i class="bi bi-person-dash"></i></a>
+                          {% else %}
+                            <a href="{% url 'accounts:follow' note.user.slug %}" class="btn btn-sm btn-primary rounded-pill ms-2" title="Follow"><i class="bi bi-person-plus"></i></a>
+                          {% endif %}
+                        {% endif %}
+                      </p>
+                      <p class="text-muted small mb-0">
+                        <i class="bi bi-calendar3"></i> {{ note.updated_at|date:'M d, Y' }}
+                      </p>
+                    </div>
+                  </div>
+
+                  <p class="card-text mb-4" style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">{{ note.content|truncatewords:30 }}</p>
+                </div>
+                <div class="card-footer bg-transparent border-0 p-4 pt-0">
+                  <a href="{% url 'notes:public_note_detail' note.pk %}" class="btn btn-primary w-100"><i class="bi bi-eye me-2"></i>Read More</a>
                 </div>
               </div>
-
-              <p class="card-text">{{ note.content|truncatewords:20 }}</p>
             </div>
-            <div class="card-footer bg-transparent">
-              <a href="{% url 'notes:public_note_detail' note.pk %}" class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i> Read More</a>
+          {% endfor %}
+        </div>
+
+        {% if is_paginated %}
+          <nav aria-label="Page navigation" class="mt-5" data-aos="fade-up">
+            <ul class="pagination justify-content-center">
+              {% if page_obj.has_previous %}
+                <li class="page-item">
+                  <a class="page-link rounded-start-pill" href="?{% if search_query %}q={{ search_query }}&{% endif %}page=1" aria-label="First"><i class="bi bi-chevron-double-left"></i></a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="?{% if search_query %}q={{ search_query }}&{% endif %}page={{ page_obj.previous_page_number }}" aria-label="Previous"><i class="bi bi-chevron-left"></i></a>
+                </li>
+              {% endif %}
+
+              {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                  <li class="page-item active">
+                    <a class="page-link" href="?{% if search_query %}q={{ search_query }}&{% endif %}page={{ num }}">{{ num }}</a>
+                  </li>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                  <li class="page-item">
+                    <a class="page-link" href="?{% if search_query %}q={{ search_query }}&{% endif %}page={{ num }}">{{ num }}</a>
+                  </li>
+                {% endif %}
+              {% endfor %}
+
+              {% if page_obj.has_next %}
+                <li class="page-item">
+                  <a class="page-link" href="?{% if search_query %}q={{ search_query }}&{% endif %}page={{ page_obj.next_page_number }}" aria-label="Next"><i class="bi bi-chevron-right"></i></a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link rounded-end-pill" href="?{% if search_query %}q={{ search_query }}&{% endif %}page={{ page_obj.paginator.num_pages }}" aria-label="Last"><i class="bi bi-chevron-double-right"></i></a>
+                </li>
+              {% endif %}
+            </ul>
+          </nav>
+        {% endif %}
+      {% else %}
+        <div class="row">
+          <div class="col-lg-8 mx-auto" data-aos="fade-up">
+            <div class="card border-0 shadow-sm rounded-4 text-center">
+              <div class="card-body py-5">
+                {% if search_query %}
+                  <img src="https://illustrations.popsy.co/amber/search.svg" alt="No results" class="img-fluid mb-4" style="max-height: 200px;">
+                  <h2 class="fw-bold mb-3">No matching notes found</h2>
+                  <p class="lead text-muted mb-4">Try adjusting your search terms or browse all notes.</p>
+                  <a href="{% url 'notes:public_note_list' %}" class="btn btn-primary btn-lg px-4 shadow-sm"><i class="bi bi-arrow-repeat me-2"></i>Show All Notes</a>
+                {% else %}
+                  <img src="https://illustrations.popsy.co/amber/lighthouse.svg" alt="No notes" class="img-fluid mb-4" style="max-height: 200px;">
+                  <h2 class="fw-bold mb-3">No public notes available</h2>
+                  <p class="lead text-muted mb-4">Be the first to share your ideas with the community!</p>
+                  {% if user.is_authenticated %}
+                    <a href="{% url 'notes:note_create' %}" class="btn btn-primary btn-lg px-5 py-2 shadow-sm"><i class="bi bi-plus-circle me-2"></i>Create a Public Note</a>
+                  {% else %}
+                    <a href="{% url 'accounts:signup' %}" class="btn btn-primary btn-lg px-4 shadow-sm"><i class="bi bi-person-plus me-2"></i>Join Notely</a>
+                  {% endif %}
+                {% endif %}
+              </div>
             </div>
           </div>
         </div>
-      {% endfor %}
+      {% endif %}
     </div>
+  </section>
 
-    {% if is_paginated %}
-      <nav aria-label="Page navigation" class="mt-4">
-        <ul class="pagination justify-content-center">
-          {% if page_obj.has_previous %}
-            <li class="page-item">
-              <a class="page-link" href="?page=1" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-            </li>
-          {% endif %}
-
-          {% for num in page_obj.paginator.page_range %}
-            {% if page_obj.number == num %}
-              <li class="page-item active">
-                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
-              </li>
-            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-              <li class="page-item">
-                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
-              </li>
-            {% endif %}
-          {% endfor %}
-
-          {% if page_obj.has_next %}
-            <li class="page-item">
-              <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-            </li>
-          {% endif %}
-        </ul>
-      </nav>
-    {% endif %}
-  {% else %}
-    <div class="alert alert-info text-center">
-      <i class="bi bi-info-circle me-2"></i> No public notes available at the moment.
-    </div>
-  {% endif %}
+  <style>
+    .card-status-top {
+      height: 3px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      border-radius: 0.75rem 0.75rem 0 0;
+    }
+    .rounded-start-pill {
+      border-top-left-radius: 50rem;
+      border-bottom-left-radius: 50rem;
+    }
+    .rounded-end-pill {
+      border-top-right-radius: 50rem;
+      border-bottom-right-radius: 50rem;
+    }
+    .page-item.active .page-link {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+    .page-link {
+      color: var(--primary-color);
+    }
+  </style>
 {% endblock %}

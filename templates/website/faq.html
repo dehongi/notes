@@ -1,114 +1,292 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  Frequently Asked Questions
+  FAQ - Notely Help Center
 {% endblock %}
 
 {% block content %}
-  <div class="row">
-    <div class="col-lg-8 mx-auto">
-      <div class="card shadow">
-        <div class="card-body p-4 p-lg-5">
-          <h1 class="display-5 mb-4">Frequently Asked Questions</h1>
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto text-center mb-5" data-aos="fade-up">
+          <h1 class="display-5 fw-bold mb-3">Frequently Asked Questions</h1>
+          <p class="lead text-secondary mx-auto" style="max-width: 700px;">Find answers to the most common questions about using Notely.</p>
+        </div>
+      </div>
 
-          <p class="lead mb-5">Find answers to the most common questions about using Notes App.</p>
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <div class="card border-0 shadow-sm rounded-4" data-aos="fade-up">
+            <div class="card-body p-4 p-lg-5">
+              <!-- FAQ Search -->
+              <div class="mb-5">
+                <div class="input-group input-group-lg">
+                  <span class="input-group-text bg-white border-end-0"><i class="bi bi-search"></i></span>
+                  <input type="text" class="form-control border-start-0" id="faqSearch" placeholder="Search for answers...">
+                </div>
+              </div>
 
-          <div class="accordion" id="faqAccordion">
-            <!-- Question 1 -->
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">What is Notes App?</button></h2>
-              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
-                <div class="accordion-body">
-                  <p>Notes App is a simple, elegant note-taking application that allows you to capture and organize your thoughts, ideas, and information. With Notes App, you can create, edit, and manage notes from any device with internet access.</p>
+              <!-- FAQ Categories -->
+              <div class="mb-5">
+                <div class="row g-3 justify-content-center text-center">
+                  <div class="col-6 col-md-4 col-lg-3">
+                    <a href="#general" class="text-decoration-none">
+                      <div class="card border-0 shadow-sm h-100 py-3">
+                        <div class="card-body">
+                          <div class="icon-circle bg-primary bg-opacity-25 p-2 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                            <i class="bi bi-info-circle fs-2 text-white"></i>
+                          </div>
+                          <h5 class="mb-0 mt-2">General</h5>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-6 col-md-4 col-lg-3">
+                    <a href="#account" class="text-decoration-none">
+                      <div class="card border-0 shadow-sm h-100 py-3">
+                        <div class="card-body">
+                          <div class="icon-circle bg-primary bg-opacity-25 p-2 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                            <i class="bi bi-person-circle fs-2 text-white"></i>
+                          </div>
+                          <h5 class="mb-0 mt-2">Account</h5>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-6 col-md-4 col-lg-3">
+                    <a href="#notes" class="text-decoration-none">
+                      <div class="card border-0 shadow-sm h-100 py-3">
+                        <div class="card-body">
+                          <div class="icon-circle bg-primary bg-opacity-25 p-2 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                            <i class="bi bi-journal-text fs-2 text-white"></i>
+                          </div>
+                          <h5 class="mb-0 mt-2">Notes</h5>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-6 col-md-4 col-lg-3">
+                    <a href="#security" class="text-decoration-none">
+                      <div class="card border-0 shadow-sm h-100 py-3">
+                        <div class="card-body">
+                          <div class="icon-circle bg-primary bg-opacity-25 p-2 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                            <i class="bi bi-shield-lock fs-2 text-white"></i>
+                          </div>
+                          <h5 class="mb-0 mt-2">Security</h5>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- General FAQ -->
+              <div id="general" class="mb-5">
+                <h2 class="h3 fw-bold mb-4 d-flex align-items-center">
+                  <div class="icon-circle bg-primary bg-opacity-25 p-2 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                    <i class="bi bi-info-circle fs-2 text-white"></i>
+                  </div>
+                  General Questions
+                </h2>
+                
+                <div class="accordion shadow-sm rounded-4 overflow-hidden" id="generalAccordion">
+                  <!-- Question 1 -->
+                  <div class="accordion-item border-0">
+                    <h2 class="accordion-header" id="headingOne">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        What is Notely?
+                      </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#generalAccordion">
+                      <div class="accordion-body bg-light">
+                        <p class="mb-0">Notely is a simple, elegant note-taking application that allows you to capture and organize your thoughts, ideas, and information. With Notely, you can create, edit, and manage notes from any device with internet access.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Question 2 -->
+                  <div class="accordion-item border-0">
+                    <h2 class="accordion-header" id="headingTwo">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Is Notely free to use?
+                      </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#generalAccordion">
+                      <div class="accordion-body bg-light">
+                        <p class="mb-0">Yes, Notely is completely free to use with all core features included. We may introduce premium features in the future, but the basic functionality will always remain free.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Account FAQ -->
+              <div id="account" class="mb-5">
+                <h2 class="h3 fw-bold mb-4 d-flex align-items-center">
+                  <div class="icon-circle bg-primary bg-opacity-25 p-2 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                    <i class="bi bi-person-circle fs-2 text-white"></i>
+                  </div>
+                  Account Questions
+                </h2>
+                
+                <div class="accordion shadow-sm rounded-4 overflow-hidden" id="accountAccordion">
+                  <!-- Question 1 -->
+                  <div class="accordion-item border-0">
+                    <h2 class="accordion-header" id="headingFive">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                        How do I change my password or update my profile?
+                      </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse show" aria-labelledby="headingFive" data-bs-parent="#accountAccordion">
+                      <div class="accordion-body bg-light">
+                        <p>To update your profile or change your password:</p>
+                        <ol>
+                          <li>Click on your name in the top-right corner of the page</li>
+                          <li>Select "Profile" to update your personal information</li>
+                          <li>Select "Change Password" if you want to update your password</li>
+                        </ol>
+                        <p class="mb-0">You can also recover your password using the "Forgot Password" link on the login page.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Notes FAQ -->
+              <div id="notes" class="mb-5">
+                <h2 class="h3 fw-bold mb-4 d-flex align-items-center">
+                  <div class="icon-circle bg-primary bg-opacity-25 p-2 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                    <i class="bi bi-journal-text fs-2 text-white"></i>
+                  </div>
+                  Notes Questions
+                </h2>
+                
+                <div class="accordion shadow-sm rounded-4 overflow-hidden" id="notesAccordion">
+                  <!-- Question 1 -->
+                  <div class="accordion-item border-0">
+                    <h2 class="accordion-header" id="headingThree">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                        How do I create a new note?
+                      </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree" data-bs-parent="#notesAccordion">
+                      <div class="accordion-body bg-light">
+                        <p>To create a new note, simply:</p>
+                        <ol>
+                          <li>Log in to your Notely account</li>
+                          <li>Click the "New Note" button in the navigation bar</li>
+                          <li>Enter a title and content for your note</li>
+                          <li>Click "Create Note" to save</li>
+                        </ol>
+                        <p class="mb-0">Your note will be instantly saved to your account and accessible from any device.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Question 2 -->
+                  <div class="accordion-item border-0">
+                    <h2 class="accordion-header" id="headingFour">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        What is the difference between private and public notes?
+                      </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#notesAccordion">
+                      <div class="accordion-body bg-light">
+                        <p>By default, all notes are private and can only be seen by you. When you make a note public:</p>
+                        <ul>
+                          <li>It becomes visible in the public notes section of the app</li>
+                          <li>Anyone with the direct link can view it</li>
+                          <li>The note content will be visible without requiring a login</li>
+                        </ul>
+                        <p class="mb-0">You can toggle a note between private and public at any time from the note's edit page.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Security FAQ -->
+              <div id="security" class="mb-5">
+                <h2 class="h3 fw-bold mb-4 d-flex align-items-center">
+                  <div class="icon-circle bg-primary bg-opacity-25 p-2 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                    <i class="bi bi-shield-lock fs-2 text-white"></i>
+                  </div>
+                  Security Questions
+                </h2>
+                
+                <div class="accordion shadow-sm rounded-4 overflow-hidden" id="securityAccordion">
+                  <!-- Question 1 -->
+                  <div class="accordion-item border-0">
+                    <h2 class="accordion-header" id="headingSix">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+                        Is my data secure?
+                      </button>
+                    </h2>
+                    <div id="collapseSix" class="accordion-collapse collapse show" aria-labelledby="headingSix" data-bs-parent="#securityAccordion">
+                      <div class="accordion-body bg-light">
+                        <p>Yes, we take data security very seriously. Here's how we protect your information:</p>
+                        <ul>
+                          <li>All data is transmitted via secure HTTPS connections</li>
+                          <li>Passwords are securely hashed and never stored in plain text</li>
+                          <li>Regular security audits and updates</li>
+                          <li>Private notes are only accessible to you when logged in</li>
+                        </ul>
+                        <p class="mb-0">
+                          If you have specific security concerns, please <a href="{% url 'website:contact' %}">contact us</a>.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-
-            <!-- Question 2 -->
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingTwo"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Is Notes App free to use?</button></h2>
-              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
-                <div class="accordion-body">
-                  <p>Yes, Notes App is completely free to use with all core features included. We may introduce premium features in the future, but the basic functionality will always remain free.</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Question 3 -->
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingThree"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">How do I create a new note?</button></h2>
-              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
-                <div class="accordion-body">
-                  <p>To create a new note, simply:</p>
-                  <ol>
-                    <li>Log in to your Notes App account</li>
-                    <li>Click the "New Note" button in the navigation bar</li>
-                    <li>Enter a title and content for your note</li>
-                    <li>Click "Create Note" to save</li>
-                  </ol>
-                  <p>Your note will be instantly saved to your account and accessible from any device.</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Question 4 -->
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingFour"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">What is the difference between private and public notes?</button></h2>
-              <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
-                <div class="accordion-body">
-                  <p>By default, all notes are private and can only be seen by you. When you make a note public:</p>
-                  <ul>
-                    <li>It becomes visible in the public notes section of the app</li>
-                    <li>Anyone with the direct link can view it</li>
-                    <li>The note content will be visible without requiring a login</li>
-                  </ul>
-                  <p>You can toggle a note between private and public at any time from the note's edit page.</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Question 5 -->
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingFive"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">How do I change my password or update my profile?</button></h2>
-              <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
-                <div class="accordion-body">
-                  <p>To update your profile or change your password:</p>
-                  <ol>
-                    <li>Click on your name in the top-right corner of the page</li>
-                    <li>Select "Profile" to update your personal information</li>
-                    <li>Select "Change Password" if you want to update your password</li>
-                  </ol>
-                  <p>You can also recover your password using the "Forgot Password" link on the login page.</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Question 6 -->
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingSix"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">Is my data secure?</button></h2>
-              <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#faqAccordion">
-                <div class="accordion-body">
-                  <p>Yes, we take data security very seriously. Here's how we protect your information:</p>
-                  <ul>
-                    <li>All data is transmitted via secure HTTPS connections</li>
-                    <li>Passwords are securely hashed and never stored in plain text</li>
-                    <li>Regular security audits and updates</li>
-                    <li>Private notes are only accessible to you when logged in</li>
-                  </ul>
-                  <p>
-                    If you have specific security concerns, please <a href="{% url 'website:contact' %}">contact us</a>.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-5 text-center">
-            <p class="mb-4">Still have questions? We're here to help!</p>
-            <a href="{% url 'website:contact' %}" class="btn btn-primary"><i class="bi bi-envelope me-2"></i>Contact Support</a>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center" data-aos="fade-up">
+          <h2 class="h2 fw-bold mb-4">Still Have Questions?</h2>
+          <p class="lead text-secondary mb-4">Our support team is here to help with any questions or concerns you might have.</p>
+          <div class="d-flex gap-3 justify-content-center">
+            <a href="{% url 'website:contact' %}" class="btn btn-primary btn-lg px-4"><i class="bi bi-envelope me-2"></i>Contact Support</a>
+            <a href="#" class="btn btn-outline-primary btn-lg px-4"><i class="bi bi-chat-dots me-2"></i>Live Chat</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // FAQ Search functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const searchInput = document.getElementById('faqSearch');
+      
+      searchInput.addEventListener('keyup', function() {
+        const searchTerm = this.value.toLowerCase();
+        const accordionButtons = document.querySelectorAll('.accordion-button');
+        
+        accordionButtons.forEach(button => {
+          const text = button.textContent.toLowerCase();
+          const accordionItem = button.closest('.accordion-item');
+          
+          if (text.includes(searchTerm)) {
+            accordionItem.style.display = 'block';
+            if (searchTerm.length > 2) {
+              button.classList.remove('collapsed');
+              const collapseId = button.getAttribute('data-bs-target');
+              const collapseElement = document.querySelector(collapseId);
+              collapseElement.classList.add('show');
+            }
+          } else {
+            accordionItem.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
 {% endblock %}

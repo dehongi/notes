@@ -1,74 +1,228 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  Terms of Service
+  Terms of Service - Notely
 {% endblock %}
 
 {% block content %}
-  <div class="row">
-    <div class="col-lg-8 mx-auto">
-      <div class="card shadow">
-        <div class="card-body p-4 p-lg-5">
-          <h1 class="display-5 mb-4">Terms of Service</h1>
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <div class="card border-0 shadow-sm rounded-4 overflow-hidden" data-aos="fade-up">
+            <div class="card-header bg-primary text-white p-4">
+              <div class="d-flex align-items-center">
+                <div class="icon-circle bg-white bg-opacity-25 p-3 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                  <i class="bi bi-file-earmark-text fs-2 text-white"></i>
+                </div>
+                <div>
+                  <h1 class="display-5 fw-bold mb-0">Terms of Service</h1>
+                </div>
+              </div>
+            </div>
+            <div class="card-body p-4 p-lg-5">
+              <div class="alert alert-light border-0 rounded-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="d-flex">
+                  <div class="flex-shrink-0">
+                    <i class="bi bi-info-circle-fill fs-4 text-primary me-3"></i>
+                  </div>
+                  <div>
+                    <p class="mb-0">
+                      <strong>Last updated:</strong> {% now 'F j, Y' %}
+                    </p>
+                  </div>
+                </div>
+              </div>
 
-          <p class="lead mb-4">Please read these terms carefully before using Notes App.</p>
+              <p class="lead text-secondary mb-5" data-aos="fade-up" data-aos-delay="200">Please read these terms carefully before using Notely. By accessing or using our services, you agree to be bound by these Terms of Service.</p>
 
-          <p>
-            Last updated:{% now 'F j, Y' %}
-          </p>
+              <div class="row g-5">
+                <!-- Section 1: Acceptance of Terms -->
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+                  <div class="d-flex align-items-center mb-4">
+                    <div class="icon-circle bg-primary bg-opacity-25 p-2 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                      <i class="bi bi-check-circle fs-2 text-white"></i>
+                    </div>
+                    <h2 class="h3 fw-bold mb-0">1. Acceptance of Terms</h2>
+                  </div>
+                  <div class="card border-0 shadow-sm rounded-4 h-100">
+                    <div class="card-body p-4">
+                      <p>By accessing or using Notely, you agree to be bound by these Terms of Service. If you do not agree to these terms, you may not access or use our services.</p>
+                      <div class="alert alert-primary bg-primary bg-opacity-10 border-0 rounded-3 mt-3 mb-0">
+                        <div class="d-flex">
+                          <div class="flex-shrink-0">
+                            <i class="bi bi-lightbulb fs-5 text-primary me-2"></i>
+                          </div>
+                          <div>
+                            <p class="mb-0">Your use of Notely constitutes your agreement to all terms, conditions, and notices contained or referenced herein.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-          <h2 class="h4 mt-5 mb-3">1. Acceptance of Terms</h2>
-          <p>By accessing or using Notes App, you agree to be bound by these Terms of Service. If you do not agree to these terms, you may not access or use our services.</p>
+                <!-- Section 2: Description of Service -->
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+                  <div class="d-flex align-items-center mb-4">
+                    <div class="icon-circle bg-primary bg-opacity-25 p-2 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                      <i class="bi bi-app fs-2 text-white"></i>
+                    </div>
+                    <h2 class="h3 fw-bold mb-0">2. Description of Service</h2>
+                  </div>
+                  <div class="card border-0 shadow-sm rounded-4 h-100">
+                    <div class="card-body p-4">
+                      <p>Notely provides a platform for creating, storing, and managing digital notes. We reserve the right to modify, suspend, or discontinue the service at any time without notice.</p>
+                      <p class="mb-0">This includes the right to:</p>
+                      <ul class="mb-0 mt-2">
+                        <li>Add or remove features</li>
+                        <li>Change service availability</li>
+                        <li>Adjust pricing (with advance notice)</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
 
-          <h2 class="h4 mt-5 mb-3">2. Description of Service</h2>
-          <p>Notes App provides a platform for creating, storing, and managing digital notes. We reserve the right to modify, suspend, or discontinue the service at any time without notice.</p>
+                <!-- Section 3: User Accounts -->
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="500">
+                  <div class="d-flex align-items-center mb-4">
+                    <div class="icon-circle bg-primary bg-opacity-25 p-2 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                      <i class="bi bi-person-circle fs-2 text-white"></i>
+                    </div>
+                    <h2 class="h3 fw-bold mb-0">3. User Accounts</h2>
+                  </div>
+                  <div class="card border-0 shadow-sm rounded-4 h-100">
+                    <div class="card-body p-4">
+                      <p>To use certain features of Notely, you must register for an account. You are responsible for maintaining the confidentiality of your account information and for all activities that occur under your account.</p>
+                      <p class="mb-0">We reserve the right to terminate accounts that violate these terms or for any other reason at our sole discretion.</p>
+                    </div>
+                  </div>
+                </div>
 
-          <h2 class="h4 mt-5 mb-3">3. User Accounts</h2>
-          <p>To use certain features of Notes App, you must register for an account. You are responsible for maintaining the confidentiality of your account information and for all activities that occur under your account.</p>
-          <p>We reserve the right to terminate accounts that violate these terms or for any other reason at our sole discretion.</p>
+                <!-- Section 4: User Content -->
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="600">
+                  <div class="d-flex align-items-center mb-4">
+                    <div class="icon-circle bg-primary bg-opacity-25 p-2 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                      <i class="bi bi-file-earmark-text fs-2 text-white"></i>
+                    </div>
+                    <h2 class="h3 fw-bold mb-0">4. User Content</h2>
+                  </div>
+                  <div class="card border-0 shadow-sm rounded-4 h-100">
+                    <div class="card-body p-4">
+                      <p>You retain all rights to the content you create and store on Notely. By making content public, you grant us a worldwide, non-exclusive license to host and display that content.</p>
+                      <p>You agree not to use Notely to store or share:</p>
+                      <div class="bg-light p-3 rounded-3 mt-3 mb-0">
+                        <ul class="mb-0">
+                          <li>Content that infringes on intellectual property rights</li>
+                          <li>Content that violates any laws or regulations</li>
+                          <li>Malicious software or harmful code</li>
+                          <li>Content that is defamatory, obscene, or harassing</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-          <h2 class="h4 mt-5 mb-3">4. User Content</h2>
-          <p>You retain all rights to the content you create and store on Notes App. By making content public, you grant us a worldwide, non-exclusive license to host and display that content.</p>
-          <p>You agree not to use Notes App to store or share:</p>
-          <ul>
-            <li>Content that infringes on intellectual property rights</li>
-            <li>Content that violates any laws or regulations</li>
-            <li>Malicious software or harmful code</li>
-            <li>Content that is defamatory, obscene, or harassing</li>
-          </ul>
+                <!-- Section 5: Privacy -->
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="700">
+                  <div class="d-flex align-items-center mb-4">
+                    <div class="icon-circle bg-primary bg-opacity-25 p-2 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                      <i class="bi bi-shield-lock fs-2 text-white"></i>
+                    </div>
+                    <h2 class="h3 fw-bold mb-0">5. Privacy</h2>
+                  </div>
+                  <div class="card border-0 shadow-sm rounded-4 h-100">
+                    <div class="card-body p-4">
+                      <p class="mb-4">
+                        Your privacy is important to us. Please review our <a href="{% url 'website:privacy' %}" class="text-decoration-none">Privacy Policy</a>
+                        to understand how we collect, use, and disclose information about you.
+                      </p>
+                      <a href="{% url 'website:privacy' %}" class="btn btn-outline-primary w-100"><i class="bi bi-shield-lock me-2"></i>View Privacy Policy</a>
+                    </div>
+                  </div>
+                </div>
 
-          <h2 class="h4 mt-5 mb-3">5. Privacy</h2>
-          <p>
-            Your privacy is important to us. Please review our <a href="{% url 'website:privacy' %}">Privacy Policy</a>
-            to understand how we collect, use, and disclose information about you.
-          </p>
+                <!-- Section 6: Limitation of Liability -->
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="800">
+                  <div class="d-flex align-items-center mb-4">
+                    <div class="icon-circle bg-primary bg-opacity-25 p-2 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                      <i class="bi bi-exclamation-triangle fs-2 text-white"></i>
+                    </div>
+                    <h2 class="h3 fw-bold mb-0">6. Limitation of Liability</h2>
+                  </div>
+                  <div class="card border-0 shadow-sm rounded-4 h-100">
+                    <div class="card-body p-4">
+                      <p>Notely is provided "as is" without warranties of any kind. We are not responsible for any damages that may arise from your use of our service.</p>
+                      <p>We do not guarantee that:</p>
+                      <ul class="mb-0">
+                        <li>The service will be uninterrupted or error-free</li>
+                        <li>Defects will be corrected</li>
+                        <li>The service or servers are free of viruses or other harmful components</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
 
-          <h2 class="h4 mt-5 mb-3">6. Limitation of Liability</h2>
-          <p>Notes App is provided "as is" without warranties of any kind. We are not responsible for any damages that may arise from your use of our service.</p>
-          <p>We do not guarantee that:</p>
-          <ul>
-            <li>The service will be uninterrupted or error-free</li>
-            <li>Defects will be corrected</li>
-            <li>The service or servers are free of viruses or other harmful components</li>
-          </ul>
+                <!-- Section 7: Changes to Terms -->
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="900">
+                  <div class="d-flex align-items-center mb-4">
+                    <div class="icon-circle bg-primary bg-opacity-25 p-2 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                      <i class="bi bi-arrow-repeat fs-2 text-white"></i>
+                    </div>
+                    <h2 class="h3 fw-bold mb-0">7. Changes to Terms</h2>
+                  </div>
+                  <div class="card border-0 shadow-sm rounded-4 h-100">
+                    <div class="card-body p-4">
+                      <p class="mb-0">We may update these terms from time to time. We will notify users of significant changes by posting a notice on our website or sending an email to the address associated with your account.</p>
+                    </div>
+                  </div>
+                </div>
 
-          <h2 class="h4 mt-5 mb-3">7. Changes to Terms</h2>
-          <p>We may update these terms from time to time. We will notify users of significant changes by posting a notice on our website or sending an email to the address associated with your account.</p>
+                <!-- Section 8: Governing Law -->
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="1000">
+                  <div class="d-flex align-items-center mb-4">
+                    <div class="icon-circle bg-primary bg-opacity-25 p-2 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                      <i class="bi bi-bank fs-2 text-white"></i>
+                    </div>
+                    <h2 class="h3 fw-bold mb-0">8. Governing Law</h2>
+                  </div>
+                  <div class="card border-0 shadow-sm rounded-4 h-100">
+                    <div class="card-body p-4">
+                      <p class="mb-0">These terms are governed by and construed in accordance with the laws of the jurisdiction in which our company is registered, without regard to its conflict of law principles.</p>
+                    </div>
+                  </div>
+                </div>
 
-          <h2 class="h4 mt-5 mb-3">8. Governing Law</h2>
-          <p>These terms are governed by and construed in accordance with the laws of the jurisdiction in which our company is registered, without regard to its conflict of law principles.</p>
-
-          <h2 class="h4 mt-5 mb-3">9. Contact Information</h2>
-          <p>If you have any questions about these Terms of Service, please contact us at:</p>
-          <p>
-            <a href="mailto:legal@notesapp.com">legal@notesapp.com</a>
-          </p>
-
-          <div class="mt-5 text-center">
-            <a href="{% url 'website:contact' %}" class="btn btn-primary"><i class="bi bi-envelope me-2"></i>Contact Us</a>
+                <!-- Section 9: Contact Information -->
+                <div class="col-12" data-aos="fade-up" data-aos-delay="1100">
+                  <div class="d-flex align-items-center mb-4">
+                    <div class="icon-circle bg-primary bg-opacity-25 p-2 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                      <i class="bi bi-envelope fs-2 text-white"></i>
+                    </div>
+                    <h2 class="h3 fw-bold mb-0">9. Contact Information</h2>
+                  </div>
+                  <div class="card border-0 shadow-sm rounded-4">
+                    <div class="card-body p-4">
+                      <div class="row align-items-center">
+                        <div class="col-md-8 mb-4 mb-md-0">
+                          <p class="mb-4">If you have any questions about these Terms of Service, please contact us at:</p>
+                          <div class="d-flex align-items-center mb-0">
+                            <i class="bi bi-envelope-fill fs-5 text-primary me-3"></i>
+                            <a href="mailto:legal@notely.com" class="text-decoration-none fs-5">legal@notely.com</a>
+                          </div>
+                        </div>
+                        <div class="col-md-4 text-md-end">
+                          <a href="{% url 'website:contact' %}" class="btn btn-primary btn-lg px-4 py-2"><i class="bi bi-chat-dots me-2"></i>Contact Us</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 {% endblock %}

@@ -1,113 +1,233 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  Welcome to Notes App
+  Welcome to Notely - Capture Your Ideas
 {% endblock %}
 
 {% block content %}
   <!-- Hero Section -->
-  <div class="hero-section fade-in">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 mx-auto text-center">
-          <h1 class="display-4 mb-3">Capture Your Thoughts</h1>
-          <p class="lead mb-4">Keep track of your ideas, anywhere, anytime.</p>
+  <section class="py-5 mb-5 position-relative overflow-hidden">
+    <div class="container py-5">
+      <div class="row align-items-center">
+        <div class="col-lg-6" data-aos="fade-right">
+          <h1 class="display-3 fw-bold mb-3">Capture Your <span class="text-primary">Brilliant</span> Ideas</h1>
+          <p class="lead mb-4 text-secondary">Your personal space for thoughts, ideas, and inspirations. Organize your life with Notely's modern note-taking experience.</p>
 
           {% if user.is_authenticated %}
-            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-4">
-              <a href="{% url 'notes:note_list' %}" class="btn btn-primary btn-lg px-4 me-sm-2"><i class="bi bi-journals me-2"></i>My Notes</a>
-              <a href="{% url 'notes:note_create' %}" class="btn btn-success btn-lg px-4"><i class="bi bi-plus-circle me-2"></i>New Note</a>
+            <div class="d-grid gap-2 d-sm-flex mb-5">
+              <a href="{% url 'notes:note_list' %}" class="btn btn-primary btn-lg px-4 me-sm-3 shadow-sm"><i class="bi bi-journals me-2"></i>My Notes</a>
+              <a href="{% url 'notes:note_create' %}" class="btn btn-outline-primary btn-lg px-4"><i class="bi bi-plus-circle me-2"></i>New Note</a>
             </div>
           {% else %}
-            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-4">
-              <a href="{% url 'accounts:signup' %}" class="btn btn-success btn-lg px-4 me-sm-2"><i class="bi bi-person-plus me-2"></i>Sign Up</a>
+            <div class="d-grid gap-2 d-sm-flex mb-5">
+              <a href="{% url 'accounts:signup' %}" class="btn btn-primary btn-lg px-4 me-sm-3 shadow-sm"><i class="bi bi-person-plus me-2"></i>Get Started Free</a>
               <a href="{% url 'accounts:login' %}" class="btn btn-outline-primary btn-lg px-4"><i class="bi bi-box-arrow-in-right me-2"></i>Log In</a>
             </div>
           {% endif %}
         </div>
+        <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+          <div class="position-relative">
+            <div class="bg-primary rounded-4 opacity-10 position-absolute" style="width: 85%; height: 85%; top: 50px; left: 50px; z-index: -1;"></div>
+            <img src="https://images.unsplash.com/photo-1517842645767-c639042777db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Note taking" class="img-fluid rounded-4 shadow">
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+    <!-- Animated background elements -->
+    <div class="position-absolute" style="width: 300px; height: 300px; background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); filter: blur(150px); opacity: 0.2; top: -100px; left: -100px; border-radius: 50%; z-index: -1;"></div>
+    <div class="position-absolute" style="width: 200px; height: 200px; background: linear-gradient(to right, var(--secondary-color), var(--primary-color)); filter: blur(100px); opacity: 0.1; bottom: -50px; right: 10%; border-radius: 50%; z-index: -1;"></div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="py-3 my-5 bg-light rounded-4 mx-3" data-aos="fade-up">
+    <div class="container py-4">
+      <div class="row g-4 text-center justify-content-center">
+        <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+          <div class="stat-item">
+            <div class="stat-icon mb-2">
+              <i class="bi bi-people fs-1 text-primary"></i>
+            </div>
+            <h3 class="fs-2 fw-bold">10K+</h3>
+            <p class="text-muted">Happy Users</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+          <div class="stat-item">
+            <div class="stat-icon mb-2">
+              <i class="bi bi-journal-text fs-1 text-primary"></i>
+            </div>
+            <h3 class="fs-2 fw-bold">500K+</h3>
+            <p class="text-muted">Notes Created</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="300">
+          <div class="stat-item">
+            <div class="stat-icon mb-2">
+              <i class="bi bi-clock-history fs-1 text-primary"></i>
+            </div>
+            <h3 class="fs-2 fw-bold">99.9%</h3>
+            <p class="text-muted">Uptime</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="400">
+          <div class="stat-item">
+            <div class="stat-icon mb-2">
+              <i class="bi bi-star fs-1 text-primary"></i>
+            </div>
+            <h3 class="fs-2 fw-bold">4.8/5</h3>
+            <p class="text-muted">User Rating</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Features Section -->
-  <div class="container py-5">
+  <section class="container py-5">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <h2 class="display-6 fw-bold">Powerful Features for Your Ideas</h2>
+      <p class="lead text-muted">Everything you need to capture, organize, and share your thoughts</p>
+    </div>
     <div class="row g-4">
-      <div class="col-md-4 slide-up" style="animation-delay: 0.1s;">
-        <div class="card h-100 shadow-hover">
-          <div class="card-body text-center p-4">
-            <i class="bi bi-shield-lock text-primary feature-icon"></i>
-            <h3 class="h4 mt-3">Secure & Private</h3>
-            <p class="card-text">Keep your notes private or share them with the world.</p>
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body p-4 text-center">
+            <div class="feature-icon-wrapper mb-3">
+              <div class="icon-circle bg-primary bg-opacity-25 p-3 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                <i class="bi bi-shield-lock fs-2 text-white"></i>
+              </div>
+            </div>
+            <h3 class="h4">Private & Secure</h3>
+            <p class="text-muted">Your notes are encrypted and only accessible to you. Choose to share specific notes publicly when you want.</p>
           </div>
         </div>
       </div>
-      <div class="col-md-4 slide-up" style="animation-delay: 0.2s;">
-        <div class="card h-100 shadow-hover">
-          <div class="card-body text-center p-4">
-            <i class="bi bi-lightning-charge text-primary feature-icon"></i>
-            <h3 class="h4 mt-3">Fast & Responsive</h3>
-            <p class="card-text">Access your notes from any device with our clean, modern interface.</p>
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body p-4 text-center">
+            <div class="feature-icon-wrapper mb-3">
+              <div class="icon-circle bg-primary bg-opacity-25 p-3 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                <i class="bi bi-lightning-charge fs-2 text-white"></i>
+              </div>
+            </div>
+            <h3 class="h4">Fast & Responsive</h3>
+            <p class="text-muted">Enjoy a lightning-fast experience on any device. Our clean interface adapts to your screen size seamlessly.</p>
           </div>
         </div>
       </div>
-      <div class="col-md-4 slide-up" style="animation-delay: 0.3s;">
-        <div class="card h-100 shadow-hover">
-          <div class="card-body text-center p-4">
-            <i class="bi bi-cloud-arrow-up text-primary feature-icon"></i>
-            <h3 class="h4 mt-3">Cloud-Powered</h3>
-            <p class="card-text">Your notes are safely stored in the cloud and available wherever you go.</p>
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body p-4 text-center">
+            <div class="feature-icon-wrapper mb-3">
+              <div class="icon-circle bg-primary bg-opacity-25 p-3 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                <i class="bi bi-cloud-arrow-up fs-2 text-white"></i>
+              </div>
+            </div>
+            <h3 class="h4">Cloud Syncing</h3>
+            <p class="text-muted">Your notes are automatically saved to the cloud and available on all your devices, anywhere you go.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body p-4 text-center">
+            <div class="feature-icon-wrapper mb-3">
+              <div class="icon-circle bg-primary bg-opacity-25 p-3 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                <i class="bi bi-markdown fs-2 text-white"></i>
+              </div>
+            </div>
+            <h3 class="h4">Rich Formatting</h3>
+            <p class="text-muted">Format your notes with Markdown support for headings, lists, code blocks, and more.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body p-4 text-center">
+            <div class="feature-icon-wrapper mb-3">
+              <div class="icon-circle bg-primary bg-opacity-25 p-3 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                <i class="bi bi-share fs-2 text-white"></i>
+              </div>
+            </div>
+            <h3 class="h4">Easy Sharing</h3>
+            <p class="text-muted">Share your notes with friends or make them public for the world to see with just one click.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body p-4 text-center">
+            <div class="feature-icon-wrapper mb-3">
+              <div class="icon-circle bg-primary bg-opacity-25 p-3 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                <i class="bi bi-tag fs-2 text-white"></i>
+              </div>
+            </div>
+            <h3 class="h4">Tags & Categories</h3>
+            <p class="text-muted">Organize your notes with tags and categories to find what you need, when you need it.</p>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
   {% if user.is_authenticated and user_notes %}
     <!-- User's Notes Section -->
-    <div class="container py-5">
-      <h2 class="h3 mb-4 text-center">Your Latest Notes</h2>
+    <section class="container py-5">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="h3 mb-0" data-aos="fade-right">Your Latest Notes</h2>
+        <a href="{% url 'notes:note_list' %}" class="btn btn-outline-primary" data-aos="fade-left"><i class="bi bi-journals me-2"></i>View All Notes</a>
+      </div>
       <div class="row g-4">
         {% for note in user_notes %}
-          <div class="col-md-6 col-lg-4 slide-up" style="animation-delay: {{ forloop.counter0|floatformat:1 }}s;">
-            <div class="card h-100 shadow-hover">
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|floatformat:1 }}00">
+            <div class="card h-100 border-0 shadow-sm">
               {% if note.is_public %}
-                <div class="card-header bg-success bg-opacity-10">
-                  <i class="bi bi-globe me-1"></i> Public Note
-                </div>
+                <div class="card-status-top bg-success"></div>
+              {% else %}
+                <div class="card-status-top bg-secondary"></div>
               {% endif %}
               <div class="card-body">
-                <h3 class="h5 card-title text-truncate">{{ note.title }}</h3>
-                <p class="text-muted small">
+                <h3 class="h5 card-title text-truncate mb-3">{{ note.title }}</h3>
+                <p class="text-muted small mb-3">
                   <i class="bi bi-calendar"></i> {{ note.created_at|date:'M d, Y' }}
+                  {% if note.is_public %}
+                  <span class="badge bg-success bg-opacity-10 text-success ms-2"><i class="bi bi-globe-americas me-1"></i>Public</span>
+                  {% else %}
+                  <span class="badge bg-secondary bg-opacity-10 text-secondary ms-2"><i class="bi bi-lock me-1"></i>Private</span>
+                  {% endif %}
                 </p>
-                <p class="card-text text-truncate-3">{{ note.content }}</p>
+                <p class="card-text text-muted mb-3" style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">{{ note.content }}</p>
               </div>
-              <div class="card-footer bg-transparent">
+              <div class="card-footer bg-transparent border-0 pt-0">
                 <div class="d-flex justify-content-between align-items-center">
-                  <a href="{% url 'notes:note_detail' note.pk %}" class="btn btn-sm btn-outline-primary"><i class="bi bi-eye me-1"></i>View</a>
-                  <a href="{% url 'notes:note_update' note.pk %}" class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i></a>
+                  <a href="{% url 'notes:note_detail' note.pk %}" class="btn btn-sm btn-primary"><i class="bi bi-eye me-1"></i>View</a>
+                  <div>
+                    <a href="{% url 'notes:note_update' note.pk %}" class="btn btn-sm btn-outline-secondary me-1"><i class="bi bi-pencil"></i></a>
+                    <button type="button" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         {% endfor %}
       </div>
-      <div class="text-center mt-4">
-        <a href="{% url 'notes:note_list' %}" class="btn btn-outline-primary"><i class="bi bi-journals me-2"></i>View All Notes</a>
-      </div>
-    </div>
+    </section>
   {% endif %}
 
   {% if public_notes %}
     <!-- Public Notes Section -->
-    <div class="container py-5">
-      <h2 class="h3 mb-4 text-center">Latest Public Notes</h2>
+    <section class="container py-5">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="h3 mb-0" data-aos="fade-right">Discover Public Notes</h2>
+        <a href="{% url 'notes:public_note_list' %}" class="btn btn-outline-primary" data-aos="fade-left"><i class="bi bi-globe me-2"></i>Browse All</a>
+      </div>
       <div class="row g-4">
         {% for note in public_notes|slice:':6' %}
-          <div class="col-md-6 col-lg-4 slide-up" style="animation-delay: {{ forloop.counter0|floatformat:1 }}s;">
-            <div class="card h-100 shadow-hover">
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|floatformat:1 }}00">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-status-top bg-success"></div>
               <div class="card-body">
-                <h3 class="h5 card-title text-truncate">{{ note.title }}</h3>
+                <h3 class="h5 card-title text-truncate mb-3">{{ note.title }}</h3>
 
                 <div class="d-flex align-items-center mb-3">
                   <div class="flex-shrink-0">
@@ -134,35 +254,165 @@
                   </div>
                 </div>
 
-                <p class="card-text text-truncate-3">{{ note.content }}</p>
+                <p class="card-text text-muted mb-3" style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">{{ note.content }}</p>
               </div>
-              <div class="card-footer bg-transparent">
-                <a href="{% url 'notes:public_note_detail' note.pk %}" class="btn btn-sm btn-outline-primary w-100"><i class="bi bi-eye me-1"></i>Read More</a>
+              <div class="card-footer bg-transparent border-0 pt-0">
+                <a href="{% url 'notes:public_note_detail' note.pk %}" class="btn btn-primary btn-sm w-100"><i class="bi bi-eye me-1"></i>Read More</a>
               </div>
             </div>
           </div>
         {% endfor %}
       </div>
-      <div class="text-center mt-4">
-        <a href="{% url 'notes:public_note_list' %}" class="btn btn-outline-primary"><i class="bi bi-journals me-2"></i>View All Public Notes</a>
-      </div>
-    </div>
+    </section>
   {% endif %}
 
   {% if not user.is_authenticated %}
     <!-- Call to Action Section -->
-    <div class="container py-5">
-      <div class="row">
-        <div class="col-lg-10 mx-auto">
-          <div class="card bg-primary text-white border-0 shadow fade-in">
-            <div class="card-body p-4 p-lg-5 text-center">
-              <h2 class="mb-4">Ready to get started?</h2>
-              <p class="lead mb-4">Create your account today and start organizing your thoughts!</p>
-              <a href="{% url 'accounts:signup' %}" class="btn btn-light btn-lg px-4"><i class="bi bi-person-plus me-2"></i>Sign Up Now — It's Free!</a>
+    <section class="py-5 my-5 position-relative overflow-hidden">
+      <div class="container py-5">
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <div class="card border-0 rounded-4 shadow" data-aos="zoom-in">
+              <div class="card-body p-0">
+                <div class="row g-0">
+                  <div class="col-md-5 d-none d-md-block">
+                    <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" class="img-fluid rounded-start-4 h-100" style="object-fit: cover;" alt="Notebook">
+                  </div>
+                  <div class="col-md-7 bg-primary bg-gradient text-white p-4 p-lg-5 d-flex align-items-center rounded-end-4">
+                    <div class="text-center text-md-start py-4">
+                      <h2 class="display-6 fw-bold mb-3">Start Organizing Your Ideas Today</h2>
+                      <p class="lead mb-4">Join thousands of users who trust Notely for capturing their thoughts, ideas, and moments of inspiration.</p>
+                      <div class="d-grid d-md-block">
+                        <a href="{% url 'accounts:signup' %}" class="btn btn-light btn-lg px-4 me-md-2 text-primary fw-bold">
+                          <i class="bi bi-person-plus me-2"></i>Sign Up — It's Free!
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Animated background elements -->
+      <div class="position-absolute" style="width: 300px; height: 300px; background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); filter: blur(150px); opacity: 0.1; bottom: -100px; right: -100px; border-radius: 50%; z-index: -1;"></div>
+    </section>
+  {% endif %}
+
+  <!-- Testimonials Section -->
+  <section class="container py-5 mb-5">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <h2 class="display-6 fw-bold">What Our Users Say</h2>
+      <p class="lead text-muted">Join thousands of satisfied users who love Notely</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body p-4">
+            <div class="d-flex mb-4">
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+            </div>
+            <p class="mb-4">"Notely has transformed how I organize my ideas. The interface is clean, and the ability to access my notes from anywhere is a game-changer."</p>
+            <div class="d-flex align-items-center">
+              <div class="flex-shrink-0">
+                <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; font-size: 1rem;">S</div>
+              </div>
+              <div class="flex-grow-1 ms-3">
+                <h6 class="mb-0">Sarah Johnson</h6>
+                <p class="text-muted small mb-0">Designer</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body p-4">
+            <div class="d-flex mb-4">
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+            </div>
+            <p class="mb-4">"I use Notely every day for my research. The cloud sync features ensure I never lose my important notes, and sharing is super easy."</p>
+            <div class="d-flex align-items-center">
+              <div class="flex-shrink-0">
+                <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; font-size: 1rem;">M</div>
+              </div>
+              <div class="flex-grow-1 ms-3">
+                <h6 class="mb-0">Michael Chen</h6>
+                <p class="text-muted small mb-0">Researcher</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body p-4">
+            <div class="d-flex mb-4">
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-half text-warning"></i>
+            </div>
+            <p class="mb-4">"As a student, Notely helps me keep all my lecture notes organized. The tagging system makes it easy to find what I need during exam time."</p>
+            <div class="d-flex align-items-center">
+              <div class="flex-shrink-0">
+                <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; font-size: 1rem;">A</div>
+              </div>
+              <div class="flex-grow-1 ms-3">
+                <h6 class="mb-0">Aisha Patel</h6>
+                <p class="text-muted small mb-0">Student</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  {% endif %}
+  </section>
+
+  <style>
+    /* Custom styles for this template */
+    .card-status-top {
+      height: 3px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      border-radius: 0.75rem 0.75rem 0 0;
+    }
+    .text-truncate-3 {
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+    .icon-circle {
+      width: 70px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+    }
+    .rounded-4 {
+      border-radius: 1rem;
+    }
+    .rounded-start-4 {
+      border-top-left-radius: 1rem;
+      border-bottom-left-radius: 1rem;
+    }
+    .rounded-end-4 {
+      border-top-right-radius: 1rem;
+      border-bottom-right-radius: 1rem;
+    }
+  </style>
 {% endblock %}

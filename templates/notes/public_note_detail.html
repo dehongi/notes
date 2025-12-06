@@ -1,60 +1,89 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  {{ note.title }}
+  {{ note.title }} | Notely
 {% endblock %}
 
 {% block content %}
-  <div class="row">
-    <div class="col-lg-8 mx-auto">
-      <div class="card shadow">
-        <div class="card-body">
-          <h1 class="card-title mb-3">{{ note.title }}</h1>
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <div class="card border-0 shadow-sm rounded-4 overflow-hidden" data-aos="fade-up">
+            <div class="card-status-top bg-success"></div>
+            <div class="card-body p-4 p-lg-5">
+              <h1 class="h2 fw-bold mb-4">{{ note.title }}</h1>
 
-          <div class="d-flex align-items-center mb-3">
-            <div class="flex-shrink-0">
-              {% if note.user.profile_picture %}
-                <img src="{{ note.user.profile_picture.url }}" alt="{{ note.user.get_full_name }}" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover;" />
-              {% else %}
-                <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; font-size: 1rem;">{{ note.user.first_name|slice:':1'|upper }}</div>
-              {% endif %}
-            </div>
-            <div class="flex-grow-1 ms-3">
-              <p class="mb-0">
-                <a href="{% url 'accounts:public_profile' note.user.slug %}" class="text-decoration-none fw-bold">{{ note.user.get_full_name }}</a>
-                {% if user.is_authenticated and user != note.user %}
-                  {% if note.user.id in following_ids %}
-                    <a href="{% url 'accounts:unfollow' note.user.slug %}" class="btn btn-sm btn-outline-primary ms-2" title="Unfollow"><i class="bi bi-person-dash"></i></a>
+              <div class="d-flex align-items-center mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="flex-shrink-0">
+                  {% if note.user.profile_picture %}
+                    <img src="{{ note.user.profile_picture.url }}" alt="{{ note.user.get_full_name }}" class="rounded-circle" style="width: 48px; height: 48px; object-fit: cover;" />
                   {% else %}
-                    <a href="{% url 'accounts:follow' note.user.slug %}" class="btn btn-sm btn-primary ms-2" title="Follow"><i class="bi bi-person-plus"></i></a>
+                    <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; font-size: 1.25rem;">{{ note.user.first_name|slice:':1'|upper }}</div>
                   {% endif %}
-                {% endif %}
-              </p>
-              <p class="text-muted small mb-0">
-                <i class="bi bi-calendar"></i> {{ note.created_at|date:'F d, Y' }}
-                {% if note.updated_at != note.created_at %}
-                  &bull; <i class="bi bi-pencil"></i> Updated: {{ note.updated_at|date:'F d, Y' }} at {{ note.updated_at|time:'g:i A' }}
-                {% endif %}
-              </p>
+                </div>
+                <div class="flex-grow-1 ms-3">
+                  <div class="d-flex align-items-center flex-wrap">
+                    <a href="{% url 'accounts:public_profile' note.user.slug %}" class="text-decoration-none fw-bold me-2">{{ note.user.get_full_name }}</a>
+                    {% if user.is_authenticated and user != note.user %}
+                      {% if note.user.id in following_ids %}
+                        <a href="{% url 'accounts:unfollow' note.user.slug %}" class="btn btn-sm btn-outline-primary rounded-pill" title="Unfollow"><i class="bi bi-person-dash me-1"></i>Unfollow</a>
+                      {% else %}
+                        <a href="{% url 'accounts:follow' note.user.slug %}" class="btn btn-sm btn-primary rounded-pill" title="Follow"><i class="bi bi-person-plus me-1"></i>Follow</a>
+                      {% endif %}
+                    {% endif %}
+                  </div>
+                  <p class="text-muted small mb-0">
+                    <i class="bi bi-calendar3"></i> {{ note.created_at|date:'F d, Y' }}
+                    {% if note.updated_at != note.created_at %}
+                      &bull; <i class="bi bi-pencil"></i> Updated: {{ note.updated_at|date:'F d, Y' }} at {{ note.updated_at|time:'g:i A' }}
+                    {% endif %}
+                  </p>
+                </div>
+              </div>
+
+              <div class="note-content p-4 p-lg-5 bg-light bg-opacity-50 rounded-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                {{ note.content|linebreaks }}
+              </div>
+              
+              <div class="d-flex justify-content-between align-items-center" data-aos="fade-up" data-aos-delay="300">
+                <a href="{% url 'notes:public_note_list' %}" class="btn btn-outline-primary"><i class="bi bi-arrow-left me-2"></i>Back to Community Notes</a>
+                
+                <div class="d-flex gap-2">
+                  <button class="btn btn-outline-primary" title="Share this note"><i class="bi bi-share"></i></button>
+                  <button class="btn btn-outline-primary" title="Bookmark this note"><i class="bi bi-bookmark"></i></button>
+                </div>
+              </div>
             </div>
           </div>
 
-          <hr />
-          <div class="note-content mb-4">
-            <p>{{ note.content|linebreaks }}</p>
+          <!-- Comments Section -->
+          <div class="card border-0 shadow-sm rounded-4 mt-4" data-aos="fade-up" data-aos-delay="400">
+            <div class="card-body p-4 p-lg-5">
+              {% include 'notes/comments.html' %}
+            </div>
           </div>
-        </div>
-        <div class="card-footer bg-white">
-          <a href="{% url 'notes:public_note_list' %}" class="btn btn-outline-primary"><i class="bi bi-arrow-left"></i> Back to Public Notes</a>
-        </div>
-      </div>
-
-      <!-- Comments Section -->
-      <div class="card shadow mt-4">
-        <div class="card-body">
-          {% include 'notes/comments.html' %}
         </div>
       </div>
     </div>
-  </div>
+  </section>
+  
+  <style>
+    .card-status-top {
+      height: 3px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      border-radius: 0.75rem 0.75rem 0 0;
+    }
+    .note-content {
+      font-family: var(--body-font);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+    .note-content p:last-child {
+      margin-bottom: 0;
+    }
+  </style>
 {% endblock %}
